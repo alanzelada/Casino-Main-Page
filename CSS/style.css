@@ -127,6 +127,7 @@ header .logo img{
     height: 300px;
     margin-bottom: 20px;
     display: flex;
+    flex-wrap:wrap;
 }
 
 #games-row-1 article{
