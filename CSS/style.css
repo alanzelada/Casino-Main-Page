@@ -1,0 +1,218 @@
+*{
+    padding: 0;
+    margin: 0;
+    border: none;
+    outline: none;
+    text-decoration: none;
+    box-sizing: border-box;
+
+    background-position: top;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: 400;
+
+    user-select: none;
+}
+
+body{
+    background: rgb(59,166,49);
+    background: linear-gradient(90deg, rgba(59,166,49,1) 0%, rgba(45,124,38,1) 100%);
+}
+#mensaje-fixed{
+    position: fixed;
+    background-color: rgba(255, 255, 255, 0.87);
+    border-radius: 80px;
+    width: 35%;
+
+    bottom: 20px;
+    left: 30%;
+    right: 30%;
+    margin: auto;
+    padding: 15px;
+
+    z-index: 999;
+}
+#mensaje-fixed h2{
+    
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.3rem;
+    
+}
+
+header{
+    width: 80%;
+    height: 80px;
+    border-bottom: 1px solid white;
+    margin: auto;
+    display: flex;
+}
+header div{
+    display: flex;
+    align-items: center;
+
+}
+header .user_info{
+    width: 70%;
+}
+header .user_info h2{
+    display: flex;
+    align-items: center;
+    font-size: 1.1rem;
+    margin-right: 15px;
+    color: white;
+    font-weight: 600;
+}
+header .user_info h4{
+    display: flex;
+    align-items: center;
+    background-color: #2d7c26;
+    color: white;
+    padding: 3px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 20px;
+}
+
+header .caramelos{
+    
+    width: 20%;
+    cursor: default;
+}
+header .caramelos img{
+    width: 50px;
+}
+header .caramelos h2{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: right;
+    color: white;
+}
+#caramelos_info{
+    display: none;
+    position: absolute;
+    top: 60px;
+    background-color: #2d7c26;
+    padding: 5px;
+    box-shadow: 0 0 2px black;
+}
+#caramelos_info p{
+    font-size: 1rem;
+}
+
+header .logo{
+    width: 10%;
+    display: flex;
+    justify-content: left;
+}
+header .logo img{
+    height: 80%;
+}
+
+
+.games-box{
+    width: 80%;
+    
+    margin: auto;
+    margin-top: 20px;
+}
+.games-row{
+    width: 100%;
+    height: 300px;
+    margin-bottom: 20px;
+    display: flex;
+}
+
+#games-row-1 article{
+    width: 50%;
+    background-color: #2d7c26;
+    margin: 10px;
+    margin-bottom: 0px;
+    margin-top: 0px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+#games-row-2 article,
+#games-row-3 article{
+    margin: 10px;
+    margin-bottom: 0px;
+    margin-top: 0px;
+    width: 33.333333%;
+    background-color: #2d7c26;
+    cursor: pointer;
+    transition: 0.2s;
+}
+#games-row-1 article:hover,
+#games-row-2 article:hover,
+#games-row-3 article:hover{
+    transform: scale(1.03);
+    transition: 0.2s;
+}
+
+.game-desc{
+    padding: 15px;
+    height: 100%;
+    background: rgb(0,0,0);
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.897) 10%, rgba(0,0,0,0) 100%);
+    transition: 0.2s;
+}
+.game-desc:hover{
+    padding-top: 30px;
+    padding-left: 13px;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.897) 40%, rgba(0, 0, 0, 0.24) 100%);
+    transition: 0.2s;
+}
+
+.game-desc h2{
+    color: white;
+    font-weight: 700;
+}
+.game-desc p{
+    color: white;
+    text-shadow: 0 0 7px black;
+}
+
+#game1{
+    background-image: url('../IMG/bg-slots.jpg');
+}
+#game2{
+    background-image: url('../IMG/bg-bingo.jpg');
+}
+#game3{
+    background-image: url('../IMG/bg-dados.jpg');
+}
+#game4{
+    background-image: url('../IMG/bg-ruleta.jpg');
+}
+#game5{
+    background-image: url('../IMG/bg-rascaygana.jpg');
+}
+#game6{
+    background-image: url('../IMG/bg-blackjack.jpg');
+}
+#game7{
+    background-image: url('../IMG/bg-vasosybola.jpg');
+}
+#game8{
+    background-image: url('../IMG/bg-blackjack.jpg');
+}
+
+footer{
+    background-color: #2d7c26;
+    padding: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+footer h4{
+    text-align: center;
+    color: white;
+    font-size: 1.2rem;
+}
