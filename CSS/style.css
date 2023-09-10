@@ -24,25 +24,24 @@ body{
     position: fixed;
     background-color: rgba(255, 255, 255, 0.87);
     border-radius: 80px;
-    width: 35%;
-
+    width: max-content;
     bottom: 20px;
-    left: 30%;
-    right: 30%;
     margin: auto;
     padding: 15px;
-
+    right: 0;
+    left: 0;
     z-index: 999;
 }
 #mensaje-fixed h2{
-    
-    width: 100%;
     height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 1.3rem;
-    
+    font-size: 1rem; 
+}
+
+#mensaje-fixed #alternativa{
+    display: none;
 }
 
 header{
@@ -51,14 +50,33 @@ header{
     border-bottom: 1px solid white;
     margin: auto;
     display: flex;
+    justify-content: space-between;
 }
-header div{
-    display: flex;
-    align-items: center;
 
+header .izquierda{
+    display: flex;
+    flex-direction: row;
 }
+
+header .izquierda img{
+    width: 80px;
+}
+
+header .derecha{
+    display: flex;
+    flex-direction: row;
+}
+
+header .derecha{
+    display: flex;
+    flex-direction: row;
+}
+
 header .user_info{
-    width: 70%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
 }
 header .user_info h2{
     display: flex;
@@ -68,24 +86,31 @@ header .user_info h2{
     color: white;
     font-weight: 600;
 }
+
+header .user_info #h2Alternativo{
+    display: none;
+}
 header .user_info h4{
     display: flex;
     align-items: center;
     background-color: #2d7c26;
     color: white;
+    height: max-content;
     padding: 3px;
-    padding-left: 10px;
-    padding-right: 10px;
+    padding: 5px;
     border-radius: 20px;
 }
 
 header .caramelos{
-    
-    width: 20%;
     cursor: default;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
 }
 header .caramelos img{
     width: 50px;
+    height: 50px;
 }
 header .caramelos h2{
     width: 100%;
@@ -93,7 +118,13 @@ header .caramelos h2{
     align-items: center;
     justify-content: right;
     color: white;
+    font-weight: 600;
 }
+
+header .caramelos #h2CaramelosAlternativo{
+    display: none;
+}
+
 #caramelos_info{
     display: none;
     position: absolute;
@@ -107,18 +138,12 @@ header .caramelos h2{
 }
 
 header .logo{
-    width: 10%;
     display: flex;
     justify-content: left;
 }
-header .logo img{
-    height: 80%;
-}
-
 
 .games-box{
     width: 80%;
-    
     margin: auto;
     margin-top: 20px;
 }
@@ -127,24 +152,33 @@ header .logo img{
     height: 300px;
     margin-bottom: 20px;
     display: flex;
-    flex-wrap:wrap;
+    justify-content: space-between;
 }
 
 #games-row-1 article{
-    width: 50%;
+    max-width: 500px;
+    width: 47%;
     background-color: #2d7c26;
-    margin: 10px;
-    margin-bottom: 0px;
-    margin-top: 0px;
     cursor: pointer;
     transition: 0.2s;
 }
+
+#game1{
+    margin-bottom: 0;
+}
+
+#games-row-2,
+#games-row-3{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: max-content;
+}
 #games-row-2 article,
 #games-row-3 article{
-    margin: 10px;
-    margin-bottom: 0px;
-    margin-top: 0px;
-    width: 33.333333%;
+    max-width: 350px;
+    width: 30%;
+    height: 300px;
     background-color: #2d7c26;
     cursor: pointer;
     transition: 0.2s;
@@ -201,7 +235,7 @@ header .logo img{
     background-image: url('../IMG/bg-vasosybola.jpg');
 }
 #game8{
-    background-image: url('../IMG/bg-blackjack.jpg');
+    background-image: url('../IMG/cartaalta.jpg');
 }
 
 footer{
@@ -216,4 +250,95 @@ footer h4{
     text-align: center;
     color: white;
     font-size: 1.2rem;
+}
+
+@media only screen and (max-width: 900px){
+
+    header .izquierda{
+        justify-content: center;
+        align-items: center;
+    }
+
+    header .izquierda img{
+        height: 60px;
+        width: 60px;
+    }
+
+    header .user_info{
+        width: max-content;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    header .user_info h2{
+        display: none;
+    }
+
+    header .user_info #h2Alternativo{
+        display: flex;
+    }
+
+    header .caramelos{
+        flex-direction: column-reverse;
+    }
+
+    header .caramelos h2{
+        display: none;
+    }
+
+    header .caramelos #h2CaramelosAlternativo{
+        display: flex;
+    }
+
+    header .caramelos img{
+        height: 40px;
+        width: 40px;
+    }
+
+    #mensaje-fixed h2{
+        display: none;
+    }
+
+    #mensaje-fixed #alternativa{
+        width: max-content;
+        display: flex;
+    }
+
+    .games-row{
+        flex-direction: column;
+        margin-bottom: 0;
+        
+    }
+
+    #games-row-1{
+        
+        height: max-content;
+    }
+
+    #game1{
+        margin-bottom: 15px;
+    }
+
+    #games-row-1 article{
+        max-width: none;
+        width: 100%;
+        height: 125px;
+        overflow: scroll;
+    }
+
+    #games-row-2 ,
+    #games-row-3 {
+        flex-direction: column;
+    }
+
+    #games-row-2 article,
+    #games-row-3 article{
+        max-width: none;
+        width: 100%;
+        height: 125px;
+    }
+
+    article{
+        margin-bottom: 15px;
+    }
 }
