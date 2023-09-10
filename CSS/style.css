@@ -24,23 +24,24 @@ body {
     position: fixed;
     background-color: rgba(255, 255, 255, 0.87);
     border-radius: 80px;
-    width: 35%;
-
+    width: max-content;
     bottom: 20px;
-    left: 30%;
-    right: 30%;
     margin: auto;
     padding: 15px;
-
+    right: 0;
+    left: 0;
     z-index: 999;
 }
-#mensaje-fixed h2 {
-    width: 100%;
+#mensaje-fixed h2{
     height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 1.3rem;
+    font-size: 1rem; 
+}
+
+#mensaje-fixed #alternativa{
+    display: none;
 }
 
 header {
@@ -49,13 +50,33 @@ header {
     border-bottom: 1px solid white;
     margin: auto;
     display: flex;
+    justify-content: space-between;
 }
-header div {
+
+header .izquierda{
     display: flex;
-    align-items: center;
+    flex-direction: row;
 }
-header .user_info {
-    width: 70%;
+
+header .izquierda img{
+    width: 80px;
+}
+
+header .derecha{
+    display: flex;
+    flex-direction: row;
+}
+
+header .derecha{
+    display: flex;
+    flex-direction: row;
+}
+
+header .user_info{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
 }
 header .user_info h2 {
     display: flex;
@@ -65,23 +86,31 @@ header .user_info h2 {
     color: white;
     font-weight: 600;
 }
-header .user_info h4 {
+
+header .user_info #h2Alternativo{
+    display: none;
+}
+header .user_info h4{
     display: flex;
     align-items: center;
     background-color: #2d7c26;
     color: white;
+    height: max-content;
     padding: 3px;
-    padding-left: 10px;
-    padding-right: 10px;
+    padding: 5px;
     border-radius: 20px;
 }
 
-header .caramelos {
-    width: 20%;
+header .caramelos{
     cursor: default;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
 }
 header .caramelos img {
     width: 50px;
+    height: 50px;
 }
 header .caramelos h2 {
     width: 100%;
@@ -89,8 +118,14 @@ header .caramelos h2 {
     align-items: center;
     justify-content: right;
     color: white;
+    font-weight: 600;
 }
-#caramelos_info {
+
+header .caramelos #h2CaramelosAlternativo{
+    display: none;
+}
+
+#caramelos_info{
     display: none;
     position: absolute;
     top: 60px;
@@ -102,18 +137,13 @@ header .caramelos h2 {
     font-size: 1rem;
 }
 
-header .logo {
-    width: 10%;
+header .logo{
     display: flex;
     justify-content: left;
 }
-header .logo img {
-    height: 80%;
-}
 
-.games-box {
+.games-box{
     width: 80%;
-
     margin: auto;
     margin-top: 20px;
 }
@@ -122,23 +152,33 @@ header .logo img {
     height: 300px;
     margin-bottom: 20px;
     display: flex;
+    justify-content: space-between;
 }
 
-#games-row-1 article {
-    width: 50%;
+#games-row-1 article{
+    max-width: 500px;
+    width: 47%;
     background-color: #2d7c26;
-    margin: 10px;
-    margin-bottom: 0px;
-    margin-top: 0px;
     cursor: pointer;
     transition: 0.2s;
 }
+
+#game1{
+    margin-bottom: 0;
+}
+
+#games-row-2,
+#games-row-3{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: max-content;
+}
 #games-row-2 article,
-#games-row-3 article {
-    margin: 10px;
-    margin-bottom: 0px;
-    margin-top: 0px;
-    width: 33.333333%;
+#games-row-3 article{
+    max-width: 350px;
+    width: 30%;
+    height: 300px;
     background-color: #2d7c26;
     cursor: pointer;
     transition: 0.2s;
@@ -194,8 +234,8 @@ header .logo img {
 #game7 {
     background-image: url("../IMG/bg-vasosybola.jpg");
 }
-#game8 {
-    background-image: url("../IMG/bg-blackjack.jpg");
+#game8{
+    background-image: url('../IMG/cartaalta.jpg');
 }
 
 footer {
