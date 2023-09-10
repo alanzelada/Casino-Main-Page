@@ -22,7 +22,6 @@ loginForm.addEventListener("submit", async (e) => {
     // ID exists, you can proceed with the login
     alert("Login successful!");
     user = { id, points };
-    console.log(user)
     localStorage.setItem('user', JSON.stringify(user));
     loginDiv.style.display = "none";
     userDiv.style.display = "block";
@@ -39,7 +38,9 @@ loginForm.addEventListener("submit", async (e) => {
 loginDiv.addEventListener("click", () => {
   document.querySelector(".login-form").classList.toggle("active");
 });  
-
+document.querySelector(".username").addEventListener("click",()=>{
+  document.querySelector(".login-form").classList.toggle("active");
+});
  
 if (user == null) {
   loginDiv.style.display = "block";
@@ -48,6 +49,8 @@ if (user == null) {
 else{
   loginDiv.style.display = "none";
   userDiv.style.display = "block";
+  document.querySelector(".username").textContent = user.id;
+  document.querySelector(".points").textContent = user.points;
 }
 
 
