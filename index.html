@@ -7,20 +7,37 @@
     <link rel="stylesheet" href="CSS/style.css">
 </head>
 <body>
-    <div id="mensaje-fixed">
-        <h2>Deslice hacia abajo para ver más juegos</h2>
-    </div>
+
     <header>
         <div class="logo">
             <img src="IMG/logo.png" alt="">
         </div>
         <div class="user_info">
-            <h2>¡Bienvenido/a, Juan Pérez!</h2>
-            <h4>$4.742</h4>
+            <div class="login">LOG IN</div>
+            <div class="user__data">
+                <h2>¡Bienvenido/a, #<span class="username"></span></h2>
+                <h4>$<span class="points"></span></h4>
+            </div>
+        </div>
+        <div class="login-form">
+            <div class="caja-ingreso">
+                <img src="IMG/ruletaGiratoria.png" alt="">
+                <div class="contenedor-ingreso">
+                    <form action="#" id="form-ingreso">
+                        <h1>CASINO</h1>
+                        <h4>Ingresa tu ID.</h4>
+                        <label>
+                            <i class="fa-solid fa-user"></i>
+                            <input autofocus placeholder="0000" maxlength="10" required type="text" name="nombre" class="id-input">
+                        </label>
+                        <button type="submit">INGRESAR</button>
+                    </form>
+                </div>
+            </div>
         </div>
         <div class="caramelos">
             <h2>
-                $5000 = 
+                $5000 =
                 <img src="IMG/caramelo.png" alt="">
                 <div id="caramelos_info">
                     <p>Al acumular $5000 podrás reclamar una bolsa de caramelos</p>
@@ -89,7 +106,7 @@
             Desarrollado por 7°1° Programación (Grupo B)
         </h4>
     </footer>
-    <script src="JS/vermas.js"></script>
+    <script src="JS/main.js"></script>
     
 </body>
 </html>
