@@ -1,0 +1,217 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-weight: bold;
+}
+
+:root{
+    --variable: 1.1rem;
+    z-index: 0; 
+}
+@media (max-width: 767px) {
+    .Apuestas {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .Apuestas button {
+        width: 45%;
+        margin: 5px;
+    }
+
+    #Instrucciones button {
+        width: 90%;
+        margin: 5px auto;
+    }
+
+    .CartaJugador, .CartaBot {
+        width: 90%;
+        margin: 10px 0;
+        max-height: 240px;
+    }
+    
+    .CartaBot {
+        margin-left: 0;
+    }
+}
+
+button {
+    width: 120px;
+    height: 50px;
+    background: whitesmoke;
+    color: rgb(13, 13, 14);
+    border-radius: 18px;
+    outline: none;
+    margin: 30px;
+}
+
+button:hover {
+    background-color: rgb(13, 13, 14);
+    color: whitesmoke;
+}
+
+.Apuestas{
+    position: absolute;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 10px;
+    z-index: 3;
+}
+
+#Apuestas{
+    position:fixed;
+    z-index: 2;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+#ModApuesta{
+    position:fixed;
+    z-index: 2;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+#Instrucciones{
+    position:fixed;
+    z-index: 2;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.676);
+    backdrop-filter: blur(3px);
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+
+.Fondo{
+    position:fixed;
+    justify-content: center;
+    background-image: url(modal-img.png);
+    z-index: 3;
+}
+
+#PantallaOculta1{
+    color: rgb(212, 218, 32);
+    padding: 20px;
+    border-radius: 5px;
+    width: 50%;
+    z-index: 4;
+}
+
+.Mesa {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.Puntuacion{
+    margin-top: 20px;
+    text-align: center;
+}
+
+button {
+    width: 120px;
+    height: 50px;
+    background: whitesmoke;
+    color: rgb(13, 13, 14);
+    border-radius: 18px;
+    outline: none;
+    margin: 30px;
+}
+
+.Cartas{
+    min-width: 50vw;
+    display: flex;
+    justify-content: center;
+}
+
+.CartaJugador{
+    display: flex;
+    width: 15vw;
+    height: 40vh;
+    min-width: 90px;
+    border-radius: 5px;
+    border: solid black 2px;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: white;
+    box-shadow: 10px 8px rgba(0, 0, 0, 0.282);
+}
+
+#MostrarCartaUsuario {
+    font-size: var(--variable);
+    align-self: flex-start;
+    padding: 5px;
+}
+
+#MostrarCartaUsuario-2 {
+    font-size: 3.1rem;
+    align-self: center;
+}
+
+#MostrarCartaUsuario-3 {
+    font-size: var(--variable);
+    align-self: flex-end;
+    padding: 5px;
+}
+
+.CartaBot{
+    display: flex;
+    height: 40vh;
+    width: 15vw;
+    min-width: 90px;
+    border-radius: 5px;
+    border: solid black 2px;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-left: 50px;
+    background-color: white;
+    box-shadow: 10px 8px rgba(0, 0, 0, 0.282);
+}
+
+#MostrarCartaBot{
+    font-size: var(--variable);
+    align-self: flex-start;
+    padding: 5px;
+}
+
+#MostrarCartaBot-2{
+    font-size: 3.1rem;
+    align-self: center;
+}
+
+#MostrarCartaBot-3{
+    font-size: var(--variable);
+    align-self: flex-end;
+    padding: 5px;
+}
+
+#Juego{
+    background-image: url(MesaDEFINITIVA.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+#Menu{
+    display: none;
+    background: url(MenuBackground.jpg);
+}
