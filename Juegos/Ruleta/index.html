@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ruleta</title>
+  <link rel="stylesheet" href="CSS/style.css">
+</head>
+<body>
+    <!--
+    <div class="caja-ingreso">
+        <img src="IMG/ruletaGiratoria.png" alt="">
+        <div class="contenedor-ingreso">
+            <form action="#" id="form-ingreso">
+              <h1>Ruleta</h1>
+              <h4>Ingresá tu nombre de usuario para jugar a la ruleta. Si no tenés uno, poné uno nuevo.</h4>
+              <label>
+                <i class="fa-solid fa-user"></i>
+                <input autofocus placeholder="Nombre de usuario" maxlength="10" required type="text" name="nombre">
+              </label>
+              
+              <button type="submit">INGRESAR</button>
+            </form>
+        </div>
+
+    </div>
+    -->
+    <div id="noPts">
+        <div>
+            <h1>D:</h1>
+            <h2>¡Te quedaste sin puntos!</h2>
+            <h3>No tenés más puntos, por ende tampoco posibilidades de apostar <br> ¡Gracias por jugar!</h3>
+        </div>
+    </div>
+    <div class="reglas">
+        <button onclick="openModal()" class="modal-open"><div><img src="IMG/coin-img.png" alt="coin-img" draggable="false"><p>Ayuda</p></div></button>
+    </div>
+    <div class="historial">
+        <section>
+            <h4>Rondas anteriores</h4>
+
+            <div>
+                <h5 id="result-1">-</h5>
+                <h5 id="result-2">-</h5>
+                <h5 id="result-3">-</h5>
+                <h5 id="result-4">-</h5>
+                <h5 id="result-5">-</h5>
+            </div>
+        </section>
+    </div>
+    <div class="cuentaInfo">
+        <section>
+            <div>
+                <img src="IMG/user-solid-circle.svg" alt="">
+                <h2 id="userName">#7777</h2>
+            </div>
+            <a href="">Menú Principal</a>
+        </section>
+    </div>
+    <div class="contienepuntos">
+        <div class="puntos">
+            <h3 id="datosIngresados"></h3>
+            <script>
+                var urlParams = new URLSearchParams(window.location.search);
+                var nombre = urlParams.get('nombre');
+                var puntos = urlParams.get('puntos');
+
+                var datosIngresados = document.getElementById("datosIngresados");
+                datosIngresados.textContent = "Puntos: " + puntos;
+            </script>
+        </div>
+    </div>
+    <div id="myModal" class="modal">
+        <img src="IMG/modal-img.png" alt="modal-background-img">
+        <h2 onclick="closeModal()" class="close">×</h2>
+        <div class="modal-content" draggable="false">
+            <p>
+                <b style="font-weight: 800;">Instrucciones:</b>
+                <br>
+                Se tienen cinco fichas de cinco valores diferentes: (1 - 5 - 10 - 20 - 50). Estas fichas se pueden apostar en cualquiera de los 49 casilleros númericos y no numéricos disponibles en el tablero. 
+                Existen 12 casilleros donde solo está permitido apostar con fichas mayores a 20. 
+                La ruleta gira automáticamente cada 40 segundos.
+                Una vez girada la ruleta, en el caso de que hayas apostado al número ganador, se te sumará la cantidad de puntos de la ficha apostada a dicho número multiplicada por 2; y a la vez se te restarán los puntos de las fichas apostadas en casilleros no ganadores.
+                Los puntos que se suman/restan son el número de cada ficha.
+                <br>
+                <br>
+                <b style="font-weight: 800;">Controles:</b>
+                <br>
+                -	Podés elegir en el menú que se encuentra debajo del tablero la ficha que desees apostar, haciendo click sobre ella.
+                <br>
+                -	Luego de escoger la ficha, deberás clickear sobre el casillero donde desees apostarla. 
+                <br>
+                -	Una vez pasados los 40 segundos de apuestas, se bloqueará el tablero y la ruleta girará automáticamente y se mostrará el número ganador. Cuando deje de girar la ruleta, podrás apostar nuevamente.
+                <br> <br>
+                <b style="font-weight: 800;">En caso de cualquier Error / Bug:</b> 
+                <br>
+                - Se puede reinciar el tablero presionando F7. 
+                <br>
+                - Se puede reinciar el juego completo presionando F5.
+                <br>
+                <i>En ninguno de los 2 casos perderás tus puntos acumulados.</i>
+            </p>
+        </div>
+    </div>
+    <script>
+            // para abrir el modal
+            function openModal() {
+              document.getElementById("myModal").style.display = "flex";
+              document.getElementById("myModal").classList.add("modal-active");
+            }
+          
+            // para cerrar el modal
+            function closeModal() {
+              document.getElementById("myModal").style.display = "none";
+              document.getElementById("myModal").classList.remove("modal-active");
+            }
+    </script>
+
+    <script>
+        var datosGuardados = localStorage.getItem("datosUsuario");
+        
+        if (datosGuardados) {
+            var datos = JSON.parse(datosGuardados);
+            
+            var resultado = document.getElementById("resultado");
+            resultado.innerHTML = "Nombre: " + datos.username + ", Puntos: " + datos.puntos;
+        }
+    </script>
+    
+    <div class="contenedor">
+        <div class="casino">
+            <div class="contRuleta">
+                <input type="button" value="GIRAR" style="float:left;" id='spin' />
+                <canvas id="canvas" width="500" height="500"></canvas>
+            </div>
+            <div class="tablero">
+                <div class="cajaIzq" id="0" data-index="0" onclick="markNumber(this) ">
+                    <h1 class="numeros" style="color: white; position: relative;  margin: 10px;">0</h1>
+                </div>
+                <div class="contTablero">
+                    <div class="fila" id="primeraDocena">
+                        <div class="numero" id="3" data-index="3" style="color: white;background-color: black;"onclick="markNumber(this)"><h1>3</h1></div>
+                        <div class="numero" id="6" data-index="6" style="color: white; background-color: black;"onclick="markNumber(this) "><h1>6</h1></div>
+                        <div class="numero" id="9" data-index="9" style="background-color: #f31616; color: white;"onclick="markNumber(this) "><h1>9</h1></div>
+                        <div class="numero" id="12" data-index="12" style="background-color: #f31616; color: white;" onclick="markNumber(this) "><h1>12</h1></div>
+                        <div class="numero" id="15" data-index="15" style="color: white;background-color: black; " onclick="markNumber(this) "><h1>15</h1></div>
+                        <div class="numero" id="18" data-index="18" style="background-color: #f31616; color: white;" onclick="markNumber(this)  "><h1>18</h1></div>
+                        <div class="numero" id="21" data-index="21" style="background-color: #f31616; color: white;" onclick="markNumber(this)  "><h1>21</h1></div>
+                        <div class="numero" id="24" data-index="24" style="color: white;background-color: black; " onclick="markNumber(this) "><h1>24</h1></div>
+                        <div class="numero" id="27" data-index="27" style="background-color: #f31616; color: white;" onclick="markNumber(this)  "><h1>27</h1></div>
+                        <div class="numero" id="30" data-index="30" style="background-color: #f31616; color: white;" onclick="markNumber(this)  "><h1>30</h1></div>
+                        <div class="numero" id="33" data-index="33" style="color: white;background-color: black; " onclick="markNumber(this) "><h1>33</h1></div>
+                        <div class="numero" id="36" data-index="36" style="background-color: #f31616; color: white;" onclick="markNumber(this)  "><h1>36</h1></div>
+                    </div>
+                    <div class="fila" id="segundaDocena">
+                        <div class="numero" id="2" data-index="2" style="color: white;background-color: black; " onclick="markNumber(this) "><h1>2</h1></div>
+                        <div class="numero" id="5" data-index="5" style="background-color: #f31616; color: white;" onclick="markNumber(this)  "><h1>5</h1></div>
+                        <div class="numero" id="8" data-index="8" style="color: white;background-color: black; " onclick="markNumber(this) "><h1>8</h1></div>
+                        <div class="numero" id="11" data-index="11" style="color: white;background-color: black; " onclick="markNumber(this) "><h1>11</h1></div>
+                        <div class="numero" id="14" data-index="14" style="background-color: #f31616; color: white;" onclick="markNumber(this)  "><h1>14</h1></div>
+                        <div class="numero" id="17" data-index="17" style="color: white;background-color: black; " onclick="markNumber(this) "><h1>17</h1></div>
+                        <div class="numero" id="20" data-index="20" style="color: white;background-color: black; " onclick="markNumber(this) "><h1>20</h1></div>
+                        <div class="numero" id="23" data-index="23" style="background-color: #f31616; color: white;" onclick="markNumber(this)  "><h1>23</h1></div>
+                        <div class="numero" id="26" data-index="26" style="color: white;background-color: black; " onclick="markNumber(this) "><h1>26</h1></div>
+                        <div class="numero" id="29" data-index="29" style="color: white;background-color: black; " onclick="markNumber(this) "><h1>29</h1></div>
+                        <div class="numero" id="32" data-index="32" style="background-color: #f31616; color: white;" onclick="markNumber(this)  "><h1>32</h1></div>
+                        <div class="numero" id="35" data-index="35" style="color: white;background-color: black; " onclick="markNumber(this) "><h1>35</h1></div>
+                    </div>
+                    <div class="fila" id="terceraDocena">
+                        <div class="numero" id="1" data-index="1" style="background-color: #f31616; color: white;" onclick="markNumber(this)  "><h1>1</h1></div>
+                        <div class="numero" id="4" data-index="4" style="color: white; background-color: black; " onclick="markNumber(this) "><h1>4</h1></div>
+                        <div class="numero" id="7" data-index="7" style="background-color: #f31616; color: white;" onclick="markNumber(this)  "><h1>7</h1></div>
+                        <div class="numero" id="10" data-index="10" style="color: white; background-color: black; " onclick="markNumber(this) "><h1>10</h1></div>
+                        <div class="numero" id="13" data-index="13" style="color: white; background-color: black; " onclick="markNumber(this) "><h1>13</h1></div>
+                        <div class="numero" id="16" data-index="16" style="background-color: #f31616; color: white;" onclick="markNumber(this)  "><h1>16</h1></div>
+                        <div class="numero" id="19" data-index="19" style="background-color: #f31616; color: white;" onclick="markNumber(this)  "><h1>19</h1></div>
+                        <div class="numero" id="22" data-index="22" style="color: white; background-color: black; " onclick="markNumber(this) "><h1>22</h1></div>
+                        <div class="numero" id="25" data-index="25" style="background-color: #f31616; color: white;" onclick="markNumber(this)  "><h1>25</h1></div>
+                        <div class="numero" id="28" data-index="28" style="color: white; background-color: black; " onclick="markNumber(this) "><h1>28</h1></div>
+                        <div class="numero" id="31" data-index="31" style="color: white; background-color: black;"onclick="markNumber(this)"><h1>31</h1></div>
+                        <div class="numero" id="34" data-index="34" style="background-color: #f31616; color: white;" onclick="markNumber(this)  "><h1>34</h1></div>
+                    </div>
+                    <div class="fila" id="cuartaFila">
+                        <div class="docena" id="40" data-index="40" onclick="markNumber(this) ">
+                            <h1 class="abajo" style="color: white; ">1ra Docena</h1>
+                        </div>
+                        <div class="docena" id="41" data-index="41" onclick="markNumber(this) ">
+                            <h1 class="abajo" style="color: white; ">2da Docena</h1>
+                        </div>
+                        <div class="docena" id="42" data-index="42" onclick="markNumber(this) ">
+                            <h1 class="abajo" style="color: white; ">3ra Docena</h1>
+                        </div>
+                    </div>
+                    <div class="fila" id="quintaFila" >
+                        <div class="cajaEven">
+                            <div class="even1" id="43" data-index="43" onclick="markNumber(this) ">
+                                <h1 class="abajo" style="color: white; " >1-18</h1>
+                            </div>
+                            <div class="even2" id="44" data-index="44" onclick="markNumber(this) ">
+                                <h1 class="abajo" style="color: white; " >PAR</h1>
+                            </div>
+                        </div>
+                        <div class="cajaColor">
+                            <div class="color1" id="45" data-index="45" onclick="markNumber(this) ">
+                                <h1 class="abajo" style="color: #f31616; font-size: 28px" >◆</h1>
+                            </div>
+                            <div class="color2" id="46" data-index="46" onclick="markNumber(this) ">
+                                <h1 class="abajo" style="color: black; font-size: 28px">◆</h1>
+                            </div>
+                        </div>
+                        <div class="cajaOdd">
+                            <div class="odd1" id="47" data-index="47" onclick="markNumber(this) ">
+                                <h1 class="abajo" style="color: white; " >IMPAR</h1>
+                            </div>
+                            <div class="odd2" id="48" data-index="48" onclick="markNumber(this) ">
+                                <h1 class="abajo" style="color: white; " >19-36</h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="cajaDer">
+                    <div class="derecha1" id="37" data-index="37" onclick="markNumber(this) ">
+                        <h1 class="abajo" style="color: white;">2 a 1</h1>
+                    </div>
+                    <div class="derecha2" id="38" data-index="38" onclick="markNumber(this) ">
+                        <h1 class="abajo" style="color: white;">2 a 1</h1>
+                    </div>
+                    <div class="derecha3" id="39" data-index="39" onclick="markNumber(this) ">
+                        <h1 class="abajo" style="color: white;">2 a 1</h1>
+                    </div>
+                </div>
+            </div>
+            <h1 id="contador">40s</h1>
+        </div>
+        <div class="inventario">
+            <div class="menuFichas">
+                <h4>Usando</h4><div id="fichaSeleccionada"></div>
+                <div class="ficha" id="ficha1" data-index="1" onclick="selectFicha(this)"></div>
+                <div class="ficha" id="ficha5" data-index="5" onclick="selectFicha(this)"></div>
+                <div class="ficha" id="ficha10" data-index="10" onclick="selectFicha(this)"></div>
+                <div class="ficha" id="ficha20" data-index="20" onclick="selectFicha(this)"></div>
+                <div class="ficha" id="ficha50" data-index="50" onclick="selectFicha(this)"></div>
+            </div>
+            <h2 id="mensaje"></h2>
+            <h2 id="subMensaje"></h2>
+        </div>
+    </div>
+    <script src="JS/codigo.js"></script>
+    <script src="JS/login.js"></script>
+</html>
