@@ -8,6 +8,7 @@ let cupContainer; // Array to store the cup container elements
 const betInput = document.querySelector(".bet-input");
 
 let user = JSON.parse(localStorage.getItem('user'));
+console.log(user)
 
 function shuffle() {
   const items = gsap.utils.toArray(".cup-container"); // Convert cup container elements into an array
@@ -85,6 +86,7 @@ function createCups() {
         else {
             resultDiv.innerHTML += '<img src="resources/lose-img.png" alt="" id="result-img">'
             playLoseSound();
+            updateUserPoints(-betInput.value)
         }
         // Reset the game after 3 seconds
         setTimeout(() => {
@@ -131,14 +133,14 @@ function playWinSound() {
 
 // Function to update user points using fetch
 function updateUserPoints(pointsToAddOrSubtract) {
-  const apiUrl = "http://your-api-url/api.php";
+  const apiUrl = "http://localhost/server/";
   const requestOptions = {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      username: username,
+      username: user.id,
       points: pointsToAddOrSubtract,
     }),
   };
@@ -159,24 +161,22 @@ function updateUserPoints(pointsToAddOrSubtract) {
     });
 }
 
-function getUserPoints(username) {
-  const apiUrl = `http://your-api-url/api.php?username=${username}`;
+async function getUserPoints(username) {
+  const apiUrl = `http://localhost/server/?username=${username}`;
 
-  fetch(apiUrl)
-    .then((response) => {
-      if (response.ok) {
-        return response.json();
-      } else {
-        // Handle the error here
-        console.error("Error getting user points");
-        return Promise.reject("Error getting user points");
-      }
-    })
-    .then((data) => {
-      userPoints = data.points;
-    })
-    .catch((error) => {
-      // Handle network or other errors
-      console.error("Error getting user points:", error);
-    });
+  try {
+    const response = await fetch(apiUrl);
+    if (response.ok) {
+      const data = await response.json();
+      return data.points;
+    } else {
+      // Handle the error here
+      console.error("Error getting user points");
+      return null;
+    }
+  } catch (error) {
+    // Handle network or other errors
+    console.error("Error getting user points:", error);
+    throw error;
+  }
 }

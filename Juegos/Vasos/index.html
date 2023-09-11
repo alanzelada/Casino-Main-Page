@@ -57,7 +57,11 @@
       }
 
       // Función para cerrar el modal
-      function closeBet() {
+      async function closeBet() {
+        if(parseInt(betInput.value) > parseInt(await getUserPoints(user.id))){
+          alert("No puedes apostar tanto");
+          return;
+        }
         document.getElementById("myBetModal").style.display = "none";
         document.getElementById("myBetModal").classList.remove("modal-active");
       }
