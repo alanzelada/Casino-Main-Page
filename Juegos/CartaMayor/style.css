@@ -245,7 +245,6 @@ button {
     top: 0;
     left: 0;
   }
-  
   .modal-open-2::-moz-focus-inner,
   input::-moz-focus-inner {
     border: 0; 
