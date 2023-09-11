@@ -69,7 +69,7 @@ function Juego(){
         if(CartasJ > CartasB){
             console.log("| Victoria para el jugador |");
             P_CartasJ += 1;
-            Saldo = Saldo + (Apuesta * 1.5);
+            Saldo = Saldo + (Apuesta * 1.15);
             Puntuacion.innerHTML = `Su apuesta actual es: ${Apuesta} <br> Su Saldo actual es: ${Saldo} <br> Punto para el jugador.<br>Jugador = ${P_CartasJ} | Maquina = ${P_CartasB}`;
         }else if(CartasJ < CartasB){
             console.log("| Victoria para el bot |");
@@ -136,6 +136,14 @@ function guardarApuesta(){
     }else{
         console.log("Error, valor ingresado no valido.")
     }
+}
+
+function VolverFuncion(){
+    let Volver = document.getElementById('Volver');
+    location.href = "index.html"; 
+    /*
+     * Volver a pagina de inicio de juegos del casino
+    */
 }
 
 // Testeo de errores
