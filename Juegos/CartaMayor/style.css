@@ -87,7 +87,7 @@ button:hover {
     align-items: center;
 }
 #Instrucciones{
-    position:fixed;
+    position: fixed;
     z-index: 2;
     top: 0;
     left: 0;
@@ -96,8 +96,9 @@ button:hover {
     background: rgba(0, 0, 0, 0.676);
     backdrop-filter: blur(3px);
     display: none;
-    justify-content: center;
     align-items: center;
+    text-align: center;
+    padding-left: 42%;
 }
 
 .Fondo{
@@ -109,10 +110,13 @@ button:hover {
 
 #PantallaOculta1{
     color: rgb(212, 218, 32);
-    padding: 20px;
-    border-radius: 5px;
-    width: 50%;
+    align-items: center;
+    text-align: center;
+    border-radius: 25px;
+    width: 25%;
     z-index: 4;
+    background-color: white;
+    border: solid black 2.5px;
 }
 
 .Mesa {
@@ -214,4 +218,15 @@ button {
 #Menu{
     display: none;
     background: url(MenuBackground.jpg);
+}
+
+#Volver{
+    color: rgb(212, 218, 32);
+    align-items: center;
+    text-align: center;
+    border-radius: 25px;
+    z-index: 1;
+    position: absolute;
+    top: 85%;
+    left: 43.5%;
 }
