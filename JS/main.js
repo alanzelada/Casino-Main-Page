@@ -1,4 +1,5 @@
 let user;
+var loggedIn = false;
 const storedUser = JSON.parse(localStorage.getItem('user'));
 
 if (storedUser) {
@@ -21,6 +22,7 @@ loginForm.addEventListener("submit", async (e) => {
     }
     // ID exists, you can proceed with the login
     alert("Login successful!");
+    loggedIn = true;
     user = { id, points };
     localStorage.setItem('user', JSON.stringify(user));
     loginDiv.style.display = "none";
@@ -71,5 +73,11 @@ async function getUserPoints(username) {
     // Handle network or other errors
     console.error("Error getting user points:", error);
     throw error;
+  }
+}
+
+function checkLogIn(){
+  if(loggedIn === false){
+    document.querySelector(".login-form").style.display = 'block';
   }
 }
