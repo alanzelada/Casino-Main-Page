@@ -8,7 +8,6 @@ let cupContainer; // Array to store the cup container elements
 const betInput = document.querySelector(".bet-input");
 
 let user = JSON.parse(localStorage.getItem('user'));
-console.log(user)
 
 function shuffle() {
   const items = gsap.utils.toArray(".cup-container"); // Convert cup container elements into an array
@@ -69,7 +68,7 @@ function createCups() {
 
   // Add click event listener to each cup container
   cupContainerArray.forEach((element) => {
-    element.addEventListener('click', async () => {
+    element.addEventListener('click', () => {
       if (!selected) {
         let cup = element.querySelector(".cup");
         cup.classList.add("cup-animation");
@@ -81,12 +80,12 @@ function createCups() {
           element.innerHTML += '<div class="ball"><img src="resources/ball-img.png" alt="ball-img" draggable="false"></div>';
           resultDiv.innerHTML += '<img src="resources/win-img.png" alt="" id="result-img">'
           playWinSound();
-          await updateUserPoints(betInput.value)
+          updateUserPoints(betInput.value)
         } //if loose
         else {
           resultDiv.innerHTML += '<img src="resources/lose-img.png" alt="" id="result-img">'
           playLoseSound();
-          await updateUserPoints(-betInput.value)
+          updateUserPoints(-betInput.value)
         }
         // Reset the game after 3 seconds
         setTimeout(() => {
