@@ -1,5 +1,4 @@
 let user;
-var loggedIn = false;
 const storedUser = JSON.parse(localStorage.getItem('user'));
 
 if (storedUser) {
@@ -23,7 +22,6 @@ loginForm.addEventListener("submit", async (e) => {
     // ID exists, you can proceed with the login
     alert("Login successful!");
 
-    loggedIn = true;
 
     user = { id, points };
     localStorage.setItem('user', JSON.stringify(user));
@@ -32,7 +30,6 @@ loginForm.addEventListener("submit", async (e) => {
     document.querySelector(".login-form").classList.toggle("active");
     document.querySelector(".username").textContent = user.id;
     document.querySelector(".points").textContent = user.points;
-    loggedIn = true;
   } 
   catch (error) {
     console.error(error);
@@ -56,7 +53,6 @@ else{
   userDiv.style.display = "block";
   document.querySelector(".username").textContent = user.id;
   document.querySelector(".points").textContent = user.points;
-  loggedIn = true;
 }
 
 
@@ -81,12 +77,12 @@ async function getUserPoints(username) {
 }
 
 function checkLogIn(element) {
-  if (loggedIn === false) {
+  if (user == null) {
     let gameName = document.querySelector('#'+element.id+' div h2').textContent;
     alert(`¡Ingresa con tu usuario para poder jugar a "${gameName}"!`);
-    document.querySelector(".login-form").style.display = 'block';
+    document.querySelector(".login-form").classList.toggle("active");
   }
-  else if(loggedIn === true){
+  else {
     switch(element.id){
       case 'game1':{
         window.location.href = "Juegos/Slots/index.html";
