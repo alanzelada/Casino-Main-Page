@@ -192,7 +192,7 @@ a img{
 
 a img:hover{
     transition: transform 500ms ease;
-    transform: rotate(360deg);
+    transform: rotate(-360deg);
 }
 
 .modal-open {
