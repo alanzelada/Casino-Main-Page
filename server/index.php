@@ -7,7 +7,7 @@ $db_pass = '';
 
 //Server config to avoid CORS
 header("Access-Control-Allow-Origin: http://127.0.0.1:5501");
-header("Access-Control-Allow-Methods: GET, PUT");
+header("Access-Control-Allow-Methods: GET, PUT, OPTIONS");
 header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
 
 // Create a database connection
@@ -43,6 +43,12 @@ switch ($request_method) {
             http_response_code(400);
             echo json_encode(array("message" => "Missing username or points parameter"));
         }
+        break;
+    case 'OPTIONS':
+        // Handle preflight request
+        header("Access-Control-Allow-Methods: GET, PUT");
+        header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
+        http_response_code(204); // No content
         break;
     default:
         http_response_code(405);
@@ -80,4 +86,3 @@ function modifyUserPoints($username, $points)
 
 // Close the database connection
 $conn->close();
-?>
