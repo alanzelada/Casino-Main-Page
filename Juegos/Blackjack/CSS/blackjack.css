@@ -8,6 +8,10 @@ body {
     background-image: url(fondo.jpg);
     background-repeat: no-repeat;
     background-size: cover;
+    position: relative;
+    height: 100vh;
+    max-width: 100%;
+    overflow-x: hidden;
 }
 #final{
     display: none;
@@ -196,11 +200,11 @@ a img:hover{
 }
 
 .modal-open {
-    position: relative;
+    position: absolute;
     display: block;
     margin-inline: 2vw;
-    width: clamp(1.5rem,5.5vw,7.5rem);
-    float: left;
+    width: clamp(3rem,5.5vw,7.5rem);
+    bottom: 10px;
     
 }
 
