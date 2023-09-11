@@ -346,6 +346,14 @@ footer h4{
 
 .login{
     cursor: pointer;
+    margin-left: 20px;
+    background-color: white;
+    border: 2px solid black;
+    padding: 10px;
+    border-radius: 5px;
+    width: 100px;
+    text-align: center;
+    font-weight: 700;
 }
 .login-form {
     z-index: 99999999;
