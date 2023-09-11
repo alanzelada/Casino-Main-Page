@@ -345,3 +345,37 @@ a img:hover{
 #place-bet:hover {
     background-color: #38883d;
 }
+
+.modal-open-2 {
+    background: none;
+    border: none;
+    color: #000;
+    cursor: pointer;
+    position: absolute;
+    margin-inline: 1vw;
+    margin-block: 1vw;
+    width: 80px;
+    height: 80px;
+    top: 0;
+    left: 0;
+  }
+  
+  .modal-open-2::-moz-focus-inner,
+  input::-moz-focus-inner {
+    border: 0; 
+    padding: 0;
+    position: fixed;
+  }
+  
+  .modal-open-2:hover img{
+    transition: transform 500ms ease;
+    transform: rotate(360deg); 
+  }
+  
+  .modal-open-2 > div{
+    position: relative;
+  }
+  
+  .modal-open-2 > div img{
+    width: 100%;
+  }
