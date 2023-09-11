@@ -513,7 +513,8 @@ img{
   border: none;
   color: #000;
   cursor: pointer;
-  position: fixed;
+  position: absolute;
+  bottom: 0;
   margin-inline: 1vw;
   width: 100px;
   height: 100px;
