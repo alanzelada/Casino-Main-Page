@@ -2,6 +2,8 @@ let user;
 const storedUser = JSON.parse(localStorage.getItem('user'));
 
 if (storedUser) {
+
+   
   user = storedUser;
 }
 
