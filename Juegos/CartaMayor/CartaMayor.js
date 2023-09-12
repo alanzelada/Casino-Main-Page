@@ -142,7 +142,7 @@ function guardarApuesta(){
 
 function VolverFuncion(){
     let Volver = document.getElementById('Volver');
-    location.href = "index.html"; 
+    location.href = "../../index.html"; 
     /*
      * Volver a pagina de inicio de juegos del casino
     */

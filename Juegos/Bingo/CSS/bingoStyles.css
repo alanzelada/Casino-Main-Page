@@ -1,0 +1,439 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+@font-face {
+    font-family: 'Flat-Italic';
+    src:url(../Font/Flat-Italic.ttf);
+}
+
+@font-face {
+    font-family: 'Filled-Marqued-Italic';
+    src: url(../Font/Font-Win/Filled-Marqued-Italic.ttf);
+}
+
+body{
+    background: url(../Images/Fondo-Bingo-2.jpg);
+    background-repeat: no-repeat;
+}
+
+.contianer_bingo{
+    position: absolute;
+    height: 950px;
+    right: 0;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    background-color: rgb(57, 157, 65); 
+    border-radius: 50%;
+    margin: auto;
+    width: 50%;
+}
+
+.segundo-circulo{
+    position: absolute;
+    right: 0;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    background-color: rgb(57, 157, 65);
+    border-radius: 50%;
+    margin: auto;
+    width: 90%;
+    height: 90%;
+    border: 4px solid #FFF;
+    padding-top: 45px;
+}
+
+#tablaNumeros{
+    width: 350px;
+    height: 300px;
+    background-color: rgb(101, 22, 22);
+    color: #FFF;
+    font-weight:100;
+    font-family: 'Roboto', sans-serif;
+    padding: 10px;
+    border-radius: 30px;
+    box-shadow: 5px 5px 15px 5px rgba(66, 66, 66, 0.46);
+}
+
+#tablaNumeros td{
+    align-items: center;
+    text-align: center;
+    height: 30px;
+    width: 5px;
+    border-radius: 50%;
+    font-size: 0.8rem;
+}
+
+#tablaNumeros tbody{
+    background-color: rgb(148, 8, 8);
+}
+
+#cartonUsuario {
+    width: 500px;
+    background-color: rgb(162, 32, 32);
+    color: #FFF;
+    font-weight: 500;
+    font-family: 'Roboto', sans-serif;
+    padding: 10px;
+    color: black;
+    box-shadow: 6px 6px 15px 5px rgba(66, 66, 66, 0.46);
+}
+
+#cartonUsuario tbody{
+    background-color: #FFF;
+}
+
+#cartonUsuario td{
+    width: 20px;
+    height: 35px;
+    text-align: center;
+}
+
+#cartonUsuario td:hover{
+    background-color: rgb(205, 21, 21);
+    cursor: pointer;
+}
+
+#cartonBo td:hover{
+    background-color: none;
+    cursor: none;
+}
+
+.tdUsuario[data-coincidencia="true"] {
+    background-color: red;
+}
+
+.tdBot[data-coincidencia="true"] {
+    background-color: rgb(205, 21, 21);
+}
+
+.container_grid-button{
+    display: flex;
+    flex-direction: row;
+    gap: 50px;
+    align-items: center;
+}
+
+#cartonBot{
+    width: 500px;
+    font-weight: 500;
+    font-family: 'Roboto', sans-serif;
+    padding: 10px;
+    background-color: rgb(12, 91, 23);
+    color: black;
+    box-shadow: 6px 6px 15px 5px rgba(66, 66, 66, 0.46);
+}
+
+#cartonBot td{
+    width: 20px;
+    height: 35px;
+    text-align: center;
+}
+
+#cartonBot tr{
+    background-color: #FFF;
+}
+
+.container_grid{
+    order: 1;
+}
+
+.button_num{
+    border-radius: 50%;
+    width: 200px;
+    height: 200px;
+    order: 2;
+    border: none;
+    background: url(../Images/Bola-Roja.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    box-shadow: 10px 10px 15px 5px rgba(66, 66, 66, 0.46);
+}
+
+h3{
+    color: brown;
+    font-weight: bold;
+    font-size: 2.5em;
+}
+
+.container_user-board-buttons{
+    display: flex;
+    flex-direction: column ;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.button_mod-game{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.button1, .button2{
+    border-radius: 50%;
+    height: 50px;
+    width: 50px;
+    border: none;
+    background: url(../Images/coin-img.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: #FFF;
+    font-weight: bold;
+    box-shadow: 2px 2px 5px 2px rgba(66, 66, 66, 0.46);
+}
+
+#mensajeContainer{
+    z-index: 2;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+
+@keyframes zoom{
+    0% {
+    transform: scale(1); /* Tamaño original */
+    }
+    50% {
+    transform: scale(1.5); /* Tamaño ampliado */
+    }
+    100% {
+    transform: scale(1); /* Tamaño original */
+    display: none;
+    }
+}
+
+.perdiste{
+    font-size: 80px;
+    font-family: 'Flat-Italic';
+    font-weight: 500;
+    color: red;
+    -webkit-text-stroke: 1.5px rgb(226, 173, 0);
+    text-shadow: 0 0 40px #ffffff;
+    text-align: center;
+    margin: 25px 0px;
+    width: 450px;
+}
+
+/* Aplicar la animación a la etiqueta que deseas agrandar y achicar */
+.ganaste{
+    font-size: 70px;
+    font-family: 'Filled-Marqued-Italic';
+    font-weight: 400;
+    color: rgb(9, 163, 50);
+    -webkit-text-stroke: 1.5px rgb(9, 69, 25);
+    text-shadow: 0 0 80px #0df805;
+    animation-name: zoom; /* Nombre de la animación definida anteriormente */
+    animation-duration: 2s; /* Duración de la animación en segundos */
+    animation-iteration-count: infinite; 
+    animation-direction: alternate; /* Invertir la animación después de cada iteración */
+    margin-bottom: 50px 0px;
+    text-align: center;
+}
+
+.shadow{
+    background-color: rgba(0, 0, 0, 0.453);
+    padding-top: 50px;
+    width: 100vw;
+    height: 100vh;
+    display: block;
+}
+
+.modal-open {
+    background: none;
+    border: none;
+    color: #000;
+    cursor: pointer;
+    position: absolute;
+    margin-inline: 1vw;
+    margin-block: 1vw;
+    width: 80px;
+    height: 80px;
+    top: 0;
+    right: 0;
+  }
+  
+  .modal-open::-moz-focus-inner,
+  input::-moz-focus-inner {
+    border: 0; 
+    padding: 0;
+    position: fixed;
+  }
+  
+  .modal-open:hover img{
+    transition: transform 500ms ease;
+    transform: rotate(360deg); 
+  }
+  
+  .modal-open > div{
+    position: relative;
+  }
+  
+  .modal-open > div img{
+    width: 100%;
+  }
+  
+  .modal-open > div p{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-60%);
+    font-size: max(1.2ch,1vw);
+    font-weight: 700;
+    color: white;
+  }
+  
+  .modal {
+    display: none;
+    position: relative;
+    opacity: 0;
+    position: fixed;
+    z-index: 2;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .modal img{
+    left:50%;
+    transform: translate(-50%,-10%);
+    max-width: min(110vh, 130vw);
+    position: absolute;
+    z-index: -2;
+    height: 800px;
+    width: 1000px;
+    padding-top: 90px;
+  }
+  
+  .modal-active{
+    animation: opacity 0.33s ease-in-out forwards;
+  }
+  
+  @keyframes opacity {
+    0%{opacity: 0;}
+    100%{opacity: 1;}
+  }
+  
+  .modal-content { 
+    margin-top: 80px;
+    max-width: min(50vh, 70vw);
+    max-height: min(32vh, 32vw);
+    text-align: center;
+    transform: translateY(33%);
+    font-size: min(min(1.1rem,2vw), 2vh);
+    font-weight: 750;
+    color:#fff;
+    overflow-y: scroll;
+    overscroll-behavior: contain;
+  }
+
+  .modal-content::-webkit-scrollbar{
+    display: none;
+  }
+  
+  .modal .close{
+    display: flex;
+    position: fixed;
+    top:0;
+    right: 0;
+    align-items: center;
+    justify-content: center;
+    width: 4rem;
+    height: 4rem;
+    text-align: center;
+    font-weight: 900;
+    font-size: 1.5rem;
+    background-color: #ff3333;
+    cursor: pointer;
+    color: white;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    margin: 10px;
+  }
+  
+  .modal .close:hover{
+    transition: background-color 200ms ease;
+    background-color: hsl(0, 100%, 50%);
+  }
+
+  @media (min-width:1800px){
+    .container_iconos {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        width: 550px;
+    }
+
+    .container_palanca {
+        position: absolute;
+        bottom: 0;
+        right: 22.9%;
+        top: 30%;
+    }
+}
+
+h1{
+    text-align: center;
+    color: #FFF;
+    font-size: 1.3em;
+    font-family: 'Lato', sans-serif;
+}
+
+h2{
+    text-align: center;
+    color: #FFF;
+    font-size: 1.3em;
+    font-family: 'Lato', sans-serif;
+}
+
+
+.modal-open-2 {
+    background: none;
+    border: none;
+    color: #000;
+    cursor: pointer;
+    position: absolute;
+    margin-inline: 1vw;
+    margin-block: 1vw;
+    width: 80px;
+    height: 80px;
+    top: 0;
+    left: 0;
+  }
+  
+  .modal-open-2::-moz-focus-inner,
+  input::-moz-focus-inner {
+    border: 0; 
+    padding: 0;
+    position: fixed;
+  }
+  
+  .modal-open-2:hover img{
+    transition: transform 500ms ease;
+    transform: rotate(360deg); 
+  }
+  
+  .modal-open-2 > div{
+    position: relative;
+  }
+  
+  .modal-open-2 > div img{
+    width: 100%;
+  }

@@ -8,20 +8,19 @@ let cupContainer; // Array to store the cup container elements
 const betInput = document.querySelector(".bet-input");
 
 let user = JSON.parse(localStorage.getItem('user'));
-console.log(user)
 
 function shuffle() {
   const items = gsap.utils.toArray(".cup-container"); // Convert cup container elements into an array
 
   // Get the state of the cup containers
   const state = Flip.getState(items);
-  
+
   // Do the actual shuffling of the cup containers
   for (let i = items.length; i >= 0; i--) {
     cupsContainer.appendChild(cupsContainer.children[Math.random() * i | 0]);
     playCupMoveSound();
   }
-  
+
   // Animate the change using the Flip library
   Flip.from(state, {
     absolute: true
@@ -42,7 +41,7 @@ function createCups() {
 
   let cupContainerArray = Array.from(cupContainer);
 
-  if(!firstTime){
+  if (!firstTime) {
     // Add motion blur cups to existing cup containers
     const blurCupHTML = '<div class="motion-blur-cup cup" draggable="false"><img src="resources/cup-img.png" alt="cup-img" draggable="false"></div>';
     for (let index = 0; index < cupContainerArray.length; index++) {
@@ -56,15 +55,15 @@ function createCups() {
       repeat: totalIterations,
       repeatDelay: 0.2,
     });
-    
+
     // Remove motion blur cups after shuffling animation is completed
     cupShuffle.eventCallback("onComplete", () => {
       Array.from(document.getElementsByClassName("motion-blur-cup")).forEach(cup => cup.remove());
     });
-    
+
     cupShuffle.call(shuffle); // Call the shuffle function
   }
-  
+
   firstTime = false;
 
   // Add click event listener to each cup container
@@ -84,9 +83,9 @@ function createCups() {
           updateUserPoints(betInput.value)
         } //if loose
         else {
-            resultDiv.innerHTML += '<img src="resources/lose-img.png" alt="" id="result-img">'
-            playLoseSound();
-            updateUserPoints(-betInput.value)
+          resultDiv.innerHTML += '<img src="resources/lose-img.png" alt="" id="result-img">'
+          playLoseSound();
+          updateUserPoints(-betInput.value)
         }
         // Reset the game after 3 seconds
         setTimeout(() => {
@@ -108,31 +107,31 @@ function deleteCups() {
 }
 
 function playWinSound() {
-    const winSound = document.getElementById('winSound');
-    winSound.currentTime = 0; // Reinicia el audio a la posición inicial
-    winSound.play();
-  }
-  
-  function playLoseSound() {
-    const loseSound = document.getElementById('loseSound');
-    loseSound.currentTime = 0;
-    loseSound.play();
-  }
-  
-  function playCupSound() {
-    const cupSound = document.getElementById('cupSound');
-    cupSound.currentTime = 0;
-    cupSound.play();
-  }
+  const winSound = document.getElementById('winSound');
+  winSound.currentTime = 0; // Reinicia el audio a la posición inicial
+  winSound.play();
+}
 
-  function playCupMoveSound() {
-    const cupMoveSound = document.getElementById('cupMoveSound');
-    cupMoveSound.currentTime = 0;
-    cupMoveSound.play();
-  }
+function playLoseSound() {
+  const loseSound = document.getElementById('loseSound');
+  loseSound.currentTime = 0;
+  loseSound.play();
+}
+
+function playCupSound() {
+  const cupSound = document.getElementById('cupSound');
+  cupSound.currentTime = 0;
+  cupSound.play();
+}
+
+function playCupMoveSound() {
+  const cupMoveSound = document.getElementById('cupMoveSound');
+  cupMoveSound.currentTime = 0;
+  cupMoveSound.play();
+}
 
 // Function to update user points using fetch
-function updateUserPoints(pointsToAddOrSubtract) {
+async function updateUserPoints(pointsToAddOrSubtract) {
   const apiUrl = "http://localhost/server/";
   const requestOptions = {
     method: "PUT",
@@ -145,20 +144,25 @@ function updateUserPoints(pointsToAddOrSubtract) {
     }),
   };
 
-  fetch(apiUrl, requestOptions)
-    .then((response) => {
-      if (response.ok) {
-        // Points updated successfully
-        console.log("Points updated successfully");
-      } else {
-        // Handle the error here
-        console.error("Error updating points");
-      }
-    })
-    .catch((error) => {
-      // Handle network or other errors
-      console.error("Error updating points:", error);
-    });
+  try {
+    response = await fetch(apiUrl, requestOptions)
+
+    if (response.ok) {
+      // Points updated successfully
+      console.log("Points updated successfully");
+      const id = user.id;
+      const points = await getUserPoints(id);
+      user = { id, points };
+      localStorage.setItem('user', JSON.stringify(user));
+    } else {
+      // Handle the error here
+      console.error("Error updating points");
+    }
+  }
+  catch (error) {
+    // Handle network or other errors
+    console.error("Error updating points:", error);
+  }
 }
 
 async function getUserPoints(username) {

@@ -1,0 +1,703 @@
+
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+  user-select: none;
+  border: none;
+  outline: 0;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-weight: 400;
+}
+body{
+  background-image: url('../IMG/fondo2d.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  display: flex;
+}
+
+.modal-open-2 {
+    background: none;
+    border: none;
+    color: #000;
+    cursor: pointer;
+    position: absolute;
+    margin-inline: 1vw;
+    margin-block: 1vw;
+    width: 80px;
+    height: 80px;
+    top: 0;
+    left: 0;
+  }
+  
+  .modal-open-2::-moz-focus-inner,
+  input::-moz-focus-inner {
+    border: 0; 
+    padding: 0;
+    position: fixed;
+  }
+  
+  .modal-open-2:hover img{
+    transition: transform 500ms ease;
+    transform: rotate(360deg); 
+  }
+  
+  .modal-open-2 > div{
+    position: relative;
+  }
+  
+  .modal-open-2 > div img{
+    width: 100%;
+  }
+
+
+/* Form de ingreso */
+
+.contenedor-ingreso{
+  
+  position: fixed;
+}
+.caja-ingreso{
+  background: rgb(71,184,80);
+  background: linear-gradient(270deg, rgba(71,184,80,1) 0%, rgba(33,84,38,1) 100%);
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.caja-ingreso img{
+  width: 420px;
+  height: 420px;
+  animation: 16s anim-ruletaingreso;
+  animation-iteration-count: infinite;
+}
+@keyframes anim-ruletaingreso{
+  0%{
+    transform: rotate(0deg);
+  }
+  20%{
+    transform: rotate(180deg);
+  }
+  40%{
+    transform: rotate(50deg);
+  }
+  60%{
+    transform: rotate(160deg);
+  }
+  100%{
+    transform: rotate(360deg);
+  }
+}
+#form-ingreso{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  text-align: center;
+  padding: 45px;
+  width: 320px;
+  height: 320px;
+  border-radius: 500px;
+  margin: auto;
+}
+
+#form-ingreso h1{
+  color: black;
+  font-size: 3rem;
+  font-weight: 800;
+  
+  color: #47b850;
+}
+#form-ingreso h4{
+  
+  color: #181818;
+  margin-bottom: 35px;
+  font-size: 0.8rem;
+}
+#form-ingreso label{
+  margin-bottom: 15px;
+}
+#form-ingreso label .fa-solid{
+  font-size: 20px;
+
+}
+#form-ingreso label input{
+  outline: none;
+  border: none;
+  color: black;
+  border-bottom: 3px solid rgb(71,184,80);
+  padding: 5px;
+  padding-left: 0;
+  font-size: 18px;
+  width: 100%;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+#form-ingreso input:hover{     
+  border-bottom: 3px solid  rgb(71,184,80);
+}
+
+#form-ingreso button{
+  color: white;
+  border: none;
+   background: linear-gradient(to right,#000000, rgb(71,184,80) );
+   width: 200px;
+   border-radius: 40px;
+  padding: 10px;
+  cursor: pointer;
+  transition: .1s;
+  
+}
+#form-ingreso button:hover{
+  background-color: rgb(71,184,80);
+  box-shadow: 0 5px 10px  rgb(71,184,80);
+  padding: 20px;
+  transition: 0.3s;
+}
+
+/* Fin Form de ingreso */
+
+.contenedor{
+  background-color: rgba(0, 0, 0, 0.589);
+  padding-top: 50px;
+  width: 100vw;
+  height: 100vh;
+  display: block;
+}
+.casino{
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /*background-color: rgb(71,184,80);
+  border-radius: 50px;
+  border: 10px solid rgb(75, 7, 7);*/
+}
+.inventario{
+  width: 100%;
+  display: block;
+  padding: 10px;
+}
+.inventario h2{
+  padding: 7px;
+  color: rgb(248, 248, 248);
+  text-align: center;
+  font-size: 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  display: flex;
+  text-shadow: 0 0 6px black;
+  justify-content: center;
+   
+  line-height: 0;
+  margin-top: 10px;
+  font-weight: 700;
+}
+#subMensaje{
+  font-size: 1rem;
+  font-weight: 400;
+}
+.inventario .menuFichas{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 60px;
+  background-color: #47b850;
+  border-radius: 70px;
+  width: 380px;
+  margin: auto;
+}
+.menuFichas h4{
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: 600;
+  color: white;
+   
+}
+.menuFichas div{
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 40px;
+  height: 40px;
+  margin: 4px;
+  cursor: pointer;
+}
+.ficha:hover{
+  width: 45px;
+  height: 45px;
+}
+#fichaSeleccionada{
+  margin-right: 14px;
+  width: 30px;
+  height: 30px;
+  background-image: url('../IMG/f10.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  cursor: none;
+}
+.menuFichas #ficha1{ 
+  background-image: url(../IMG/f1.png);
+}
+.menuFichas #ficha5{ 
+  background-image: url(../IMG/f5.png);
+}
+.menuFichas #ficha10{ 
+  background-image: url(../IMG/f10.png);
+}
+.menuFichas #ficha20{ 
+  background-image: url(../IMG/f20.png);
+}
+.menuFichas #ficha50{ 
+  background-image: url(../IMG/f50.png);
+}
+/* RULETA */
+#spin{
+  display: none;
+}
+canvas{
+  height: 140%;
+  width: 140%;
+}
+.contRuleta{
+  background-color: rgb(71, 184, 80);
+  width: 300px;
+  height: 300px;
+  margin: 10px;
+  margin-right: 0;
+  border-radius: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+/* TABLERO */
+h1{
+  
+  font-size: 18px;
+  
+   
+}
+.tablero{
+  background-color: rgb(71, 184, 80);
+  padding: 20px;
+  padding-left: 25px;
+  padding-right: 25px;
+  width: 500px;
+  display: flex;
+  height: 230px;
+  margin-left: 15px;
+  border-radius: 10px;
+  /*border-bottom-left-radius: 80px;
+  border-bottom-right-radius: 80px;*/
+
+}
+.contTablero{
+  display: block;
+  width: 80%;
+  height: 100%;
+}
+.cajaIzq{
+  width: 8%;
+  height: 66%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  outline: 1px solid white;
+  border-top-left-radius: 60px;
+  border-bottom-left-radius: 60px;
+}
+.cajaDer{
+  width: 12%;
+  display: block;
+  height: 66%;
+  
+}
+.cajaDer div{
+  height: 33.3333333%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  outline: 1px solid white;
+}
+.fila{
+  display: flex;
+  width: 100%;
+  height: 22%;
+}
+.fila .numero{
+  width: 8.333333%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  outline: 1px solid white;
+   
+}
+
+img{
+  animation-name: anim-ficha;
+  animation-duration: 0.2s;
+}
+
+@keyframes anim-ficha{
+  0%{
+    opacity: 0%;
+  }
+  100%{
+    opacity: 100%;
+  }
+}
+#cuartaFila,
+#quintaFila{
+  height: 17%;
+  font-size: 0.1rem;
+}
+#cuartaFila div{
+  width: 33.3333333%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  outline: 1px solid white;
+  color: #f31616;
+  color: #3BCD05;
+  color: #111111;
+  color: #E60000;
+  
+}
+.cajaEven,
+.cajaOdd,
+.cajaColor{
+  display: flex;
+  width: 33.3333333%;
+  
+}
+.cajaEven div,
+.cajaOdd div,
+.cajaColor div{
+  width: 50%;
+  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  outline: 1px solid white;
+}
+
+/* TIMER */
+#contador{
+  background-color: rgb(71, 184, 80);
+  border-radius: 5px;
+  width: 60px;
+  height: 60px;
+  font-size: 23px;
+  margin: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
+
+/* NO PUNTOS */
+#noPts{
+  background-color: rgba(0, 0, 0, 0.486);
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 300;
+}
+#noPts div{
+  background-color: white;
+  padding: 24px;
+  width: 50%;
+  text-align: center;
+
+  border-radius: 120px;
+}
+#noPts div h1{
+  
+  color: #ff3333;
+  font-size: 90px;
+}
+#noPts div h2{
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 30px;
+}
+#noPts div h3{
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+}
+
+/* SALIR DEL JUEGO */
+.cuentaInfo{
+  position: absolute;
+  transform: scale(0.9);
+  bottom: 4px; 
+  left: 4px;
+  width: 225px;
+  opacity: 40%;
+  transition: 0.4s;
+}
+.cuentaInfo:hover{
+  opacity: 100%;
+  transform: scale(1.0);
+  transition: 0.4s;
+}
+.cuentaInfo section{
+  background-color: rgb(71, 184, 80);
+  border-radius: 15px;
+  padding: 10px;
+  border: 2px solid white;
+  display: flex;
+  flex-direction: column;
+}
+.cuentaInfo section div{
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+.cuentaInfo section div img{
+  width: 25px;
+  height: 25px;
+  margin-right: 5px;
+}
+.cuentaInfo section div h2{
+  font-size: 1.1rem;
+  color: white;
+}
+.cuentaInfo section a{
+  background-color: rgb(255, 255, 255);
+  width: 100%;
+  height: 40px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: black;
+  font-weight: 500;
+  font-size: 1.2rem;
+  text-align: center;
+}
+
+.cuentaInfo section a:hover{
+  background-color: #181818;
+  color: white;
+}
+/* HISTORIAL */
+.historial{
+  position: absolute;
+  transform: scale(0.9);
+  bottom: 4px; 
+  right: 4px;
+  opacity: 40%;
+  transition: 0.4s;
+}
+.historial:hover{
+  transform: scale(1.0);
+  opacity: 100%;
+  transition: 0.4s;
+}
+.historial section{
+  background-color: rgb(71, 184, 80);
+  border-radius: 15px;
+  padding: 10px;
+  border: 2px solid white;
+}
+.historial section h4{
+  color: white;
+  height: 30px;
+  font-size: 1.2rem;
+  
+}
+.historial section div{
+  display: flex;
+}
+
+.historial section div h5{
+  background-color: rgb(255, 255, 255);
+  border: 1px solid rgb(24, 24, 24);
+  width: 20%;
+  height: 40px;
+  width: 40px;
+  margin-right: 5px;
+  margin-top: 5px;
+  border-radius: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  color: black;
+  font-weight: 800;
+}
+#result-1{
+  background-color: rgb(14, 14, 14);
+  border: 1px solid white;
+  color: white;
+}
+/* REGLAS */
+.modal-open {
+  background: none;
+  border: none;
+  color: #000;
+  cursor: pointer;
+  position: absolute;
+  bottom: 0;
+  margin-inline: 1vw;
+  width: 100px;
+  height: 100px;
+  position: fixed;
+  margin: 10px;
+  
+}
+
+.modal-open::-moz-focus-inner,
+input::-moz-focus-inner {
+  border: 0;
+  padding: 0;
+  position: fixed;
+}
+
+.modal-open:hover img{
+  transition: transform 500ms ease;
+  transform: rotate(360deg);
+  
+}
+
+.modal-open > div{
+  position: relative;
+
+}
+
+.modal-open > div img{
+  width: 100%;
+  
+}
+
+.modal-open > div p{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-60%);
+  font-size: max(1.2ch,1vw);
+  font-weight: 700;
+  color: white;
+}
+
+.modal {
+  display: none;
+  position: relative;
+  opacity: 0;
+  position: fixed;
+  z-index: 100;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  justify-content: center;
+  align-items: center;
+  
+}
+
+.modal img{
+  left:50%;
+  transform: translate(-50%,-10%);
+  max-width: min(110vh, 130vw);
+  position: absolute;
+  z-index: -2;
+  
+}
+
+.modal-active{
+  animation: opacity 0.33s ease-in-out forwards;
+}
+
+@keyframes opacity {
+  0%{opacity: 0;}
+  100%{opacity: 1;}
+}
+
+.modal-content { 
+  max-width: min(45vh, 60vw);
+  max-height: min(22vh, 22vw);
+  text-align: left;
+  padding-right: 10px;
+  transform: translateY(33%);
+  font-size: min(min(1.25rem,2.5vw), 2.3vh);
+  
+  color:#fff;
+  overflow-y: scroll;
+  overscroll-behavior: contain;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: 400;
+  
+  
+}
+/*
+.modal-content::-webkit-scrollbar{
+  display: none;
+}
+*/
+
+.modal .close{
+  display: flex;
+  position: fixed;
+  top:0;
+  right: 0;
+  align-items: center;
+  justify-content: center;
+  width: 4rem;
+  height: 4rem;
+  text-align: center;
+  font-weight: 900;
+  font-size: 1.5rem;
+  background-color: #ff3333;
+  cursor: pointer;
+  color: white;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  margin: 10px;
+  border-radius: 500px;
+  font-size: 3rem;
+  
+}
+
+.modal .close:hover{
+  transition: background-color 200ms ease;
+  background-color: hsl(0, 100%, 50%);
+}
+
+/*pasar numero a la ruleta*/
+.contienepuntos{
+  position: fixed;
+  width: 100%;
+  color: white;
+  display: flex;
+  justify-content: end;
+  
+ 
+}
+.puntos{
+  position: fixed;
+  color: white;
+  display: flex;
+  justify-content: end;
+  background-color: rgb(71, 184, 80);
+  border-radius: 6px;
+  padding: 10px;
+  margin: 10px;
+  border: 1px solid white;
+   
+}
+
+
+
+
+
+

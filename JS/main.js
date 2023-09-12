@@ -1,5 +1,4 @@
 let user;
-var loggedIn = false;
 const storedUser = JSON.parse(localStorage.getItem('user'));
 
 if (storedUser) {
@@ -22,7 +21,8 @@ loginForm.addEventListener("submit", async (e) => {
     }
     // ID exists, you can proceed with the login
     alert("Login successful!");
-    loggedIn = true;
+
+
     user = { id, points };
     localStorage.setItem('user', JSON.stringify(user));
     loginDiv.style.display = "none";
@@ -76,8 +76,46 @@ async function getUserPoints(username) {
   }
 }
 
-function checkLogIn(){
-  if(loggedIn === false){
-    document.querySelector(".login-form").style.display = 'block';
+function checkLogIn(element) {
+  if (user == null) {
+    let gameName = document.querySelector('#'+element.id+' div h2').textContent;
+    alert(`¡Ingresa con tu usuario para poder jugar a "${gameName}"!`);
+    document.querySelector(".login-form").classList.toggle("active");
+  }
+  else {
+    switch(element.id){
+      case 'game1':{
+        window.location.href = "Juegos/Slots/index.html";
+        break;
+      }
+      case 'game2':{
+        window.location.href = "Juegos/Bingo/index.html";
+        break;
+      }
+      case 'game3':{
+        window.location.href = "Juegos/Dados/index.html";
+        break;
+      }
+      case 'game4':{
+        window.location.href = "Juegos/Ruleta/index.html";
+        break;
+      }
+      case 'game5':{
+        window.location.href = "Juegos/RascaYGana/index.html";
+        break;
+      }
+      case 'game6':{
+        window.location.href = "Juegos/Blackjack/index.html";
+        break;
+      }
+      case 'game7':{
+        window.location.href = "Juegos/Vasos/index.html";
+        break;
+      }
+      case 'game8':{
+        window.location.href = "Juegos/CartaMayor/index.html";
+        break;
+      }
+    }
   }
 }

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./CSS/bingoStyles.css">
+    <link rel="shortcut icon" href="./Images/Bola-Roja.png" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" rel="stylesheet">
+    <title>Bingo</title>
+</head>
+<body>
+
+   <div class="shadow">
+     <div class="contianer_bingo">
+         <div class="segundo-circulo">
+           <div class="bot">
+              <h1>Carton Bot:</h1>
+             <div id="carton-bot"></div>
+           </div>
+            
+            <div class="container_grid-button">
+                <button id="generarNumero" class="button_num">
+                    <div id="containerNumeroAleatorio" class="random_number">
+                        <h3 id="numeroAleatorio"></h3>
+                    </div>
+                </button>
+                
+                <table id="tablaNumeros" class="container_grid"></table>
+            </div>
+            
+            <div class="container_user-board-buttons"> 
+                <div class="usuario">
+                    <h2>Carton Usuario:</h2>
+                    <div id="carton-usuario" class="board_user"></div>
+                </div>
+
+                <div id="mensajeContainer"></div>
+
+                <div class="button_mod-game">
+                    <button id="cantarBingo" class="button2">BINGO</button>
+            
+                    <button id="fila" class="button1">FILA</button>
+                </div>
+            </div>
+            
+            <script src="./JS/bingoPrueba4.js"></script>
+         </div>
+
+        <script src="./JS/botones.js"></script>
+     </div>
+
+     <div class="buuton-back">
+        <a href="../../index.html" class="modal-open-2"><div><img src="./Images/Coin-back.png" alt="" draggable="false"></div></a>
+    </div>
+
+     <div class="reglas">
+            <button onclick="openModal()" class="modal-open"><div><img src="./Images/Coin.png" alt="coin-img" draggable="false"></div></button>
+        </div>
+
+    <div id="myModal" class="modal">
+        <img src="./Images/Background-Instrucciones.png" alt="modal-background-img">
+        <h2 onclick="closeModal()" class="close">X</h2>
+        <div class="modal-content" draggable="false">
+            <p>
+                El usuario debera de clickear en el Boton para sacar un numero al azar, si su numero coincide con el de su tabla debera tacharlo para completar el carton.
+                <br>
+                A medida que el juego avanza se ira tachando de la grilla los numeros obtenidos por el boton, y contrincante(Bot), tambien completara su carton.
+                <br>
+                Si el usuario completa una fila horizontal del carton se le avisara que completo una fila y se le recompensara con X Fichas del Casino. La recompensa en fichas se obtendra solamente si el usuario completa una fila antes que el Bot.
+                <br>
+                A su vez para ganar el Bingo, se debera de llenar el carton por completo y se le recompensara con X Fichas del Casino al usuario.
+            </p>
+        </div>
+    </div>
+   </div>
+</body>
+</html>
