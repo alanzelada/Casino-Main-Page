@@ -1,18 +1,20 @@
 var dealerSum = 0;
 var yourSum = 0;
 var dealerAceCount = 0;
-var yourAceCount = 0; 
+var yourAceCount = 0;
 var apuesta = 0;
 var dineroUsuario2 = localStorage.getItem("keyApuesta");
 var dineroUsuario = parseInt(dineroUsuario2)
 var haApostado = false;
-var username;
+let user = JSON.parse(localStorage.getItem('user'));
 var hidden;
 var deck;
 
 var canHit = true; //allows the player (you) to draw while yourSum <= 21
 
-window.onload = function() {
+const betInput = document.querySelector("#bet-input");
+
+window.onload = function () {
     buildDeck();
     shuffleDeck();
     startGame();
@@ -48,7 +50,7 @@ function startGame() {
     dealerAceCount += checkAce(hidden);
     // console.log(hidden);
     // console.log(dealerSum);
-    
+
     while (dealerSum < 17) {
         //<img src="./cards/4-C.png">
         let cardImg = document.createElement("img");
@@ -111,13 +113,13 @@ function stay() {
     document.getElementById("final").style.display = "flex";
     if (yourSum > 21 && yourSum > dealerSum || yourSum < dealerSum && dealerSum <= 21 || yourSum == dealerSum && yourSum > 21) {
         document.getElementById("mensajeFin").innerHTML = "¡Has perdido!";
-        dineroUsuario -= parseInt(apuesta);
+        updateUserPoints(-document.querySelector("#bet-input").value);
     }
-    else if (dealerSum > 21 && yourSum < dealerSum || yourSum > dealerSum && yourSum <=21) {
+    else if (dealerSum > 21 && yourSum < dealerSum || yourSum > dealerSum && yourSum <= 21) {
         document.getElementById("mensajeFin").innerHTML = "¡Has ganado!";
-        dineroUsuario = parseInt(dineroUsuario) + parseInt(apuesta*2);
+        updateUserPoints(document.querySelector("#bet-input").value)
     }
-    
+
     else if (yourSum == dealerSum && yourSum <= 21) {
         document.getElementById("mensajeFin").innerHTML = "¡Empate!";
     }
@@ -125,7 +127,7 @@ function stay() {
     document.getElementById("dealer-sum").innerText = dealerSum;
     document.getElementById("your-sum").innerText = yourSum;
     document.getElementById("results").innerText = message;
-    localStorage.setItem("keyApuesta",dineroUsuario);
+    localStorage.setItem("keyApuesta", dineroUsuario);
     console.log(dineroUsuario);
     console.log(typeof dineroUsuario);
     console.log(apuesta);
@@ -164,16 +166,13 @@ function placeBet() {
         return; // El jugador ya ha apostado, no permitir más apuestas.
     }
 
-    var betInput = document.getElementById("bet-input");
-    var betAmount = parseInt(betInput.value);
-    
     if (betAmount > 0 && betAmount <= dineroUsuario) {
         apuesta = betAmount;
         dineroUsuario -= apuesta;
         document.getElementById("dineros").innerText = "Dinero del jugador: " + dineroUsuario;
         betInput.value = "";
         document.getElementById("cantidadApuesta").innerText = "Apuesta: " + apuesta;
-        
+
         // Bloquear el botón de apuesta después de realizar una apuesta.
         haApostado = true;
         document.getElementById("place-bet").disabled = true;
@@ -183,53 +182,56 @@ function placeBet() {
 }
 
 
-function updateUserPoints(betInput) {
-    const apiUrl = "http://your-api-url/api.php";
+async function updateUserPoints(pointsToAddOrSubtract) {
+    const apiUrl = "http://localhost/server/";
     const requestOptions = {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        username: username,
-        points: betInput,
+        username: user.id,
+        points: pointsToAddOrSubtract,
       }),
     };
   
-    fetch(apiUrl, requestOptions)
-      .then((response) => {
-        if (response.ok) {
-          // Points updated successfully
-          console.log("Points updated successfully");
-        } else {
-          // Handle the error here
-          console.error("Error updating points");
-        }
-      })
-      .catch((error) => {
-        // Handle network or other errors
-        console.error("Error updating points:", error);
-      });
+    try {
+      response = await fetch(apiUrl, requestOptions)
+  
+      if (response.ok) {
+        // Points updated successfully
+        console.log("Points updated successfully");
+        const id = user.id;
+        const points = await getUserPoints(id);
+        user = { id, points };
+        localStorage.setItem('user', JSON.stringify(user));
+      } else {
+        // Handle the error here
+        console.error("Error updating points");
+      }
+    }
+    catch (error) {
+      // Handle network or other errors
+      console.error("Error updating points:", error);
+    }
   }
   
-  function getUserPoints(username) {
-    const apiUrl = `http://your-api-url/api.php?username=${username}`;
+  async function getUserPoints(username) {
+    const apiUrl = `http://localhost/server/?username=${username}`;
   
-    fetch(apiUrl)
-      .then((response) => {
-        if (response.ok) {
-          return response.json();
-        } else {
-          // Handle the error here
-          console.error("Error getting user points");
-          return Promise.reject("Error getting user points");
-        }
-      })
-      .then((data) => {
-        dineroUsuario = data.points;
-      })
-      .catch((error) => {
-        // Handle network or other errors
-        console.error("Error getting user points:", error);
-      });
+    try {
+      const response = await fetch(apiUrl);
+      if (response.ok) {
+        const data = await response.json();
+        return data.points;
+      } else {
+        // Handle the error here
+        console.error("Error getting user points");
+        return null;
+      }
+    } catch (error) {
+      // Handle network or other errors
+      console.error("Error getting user points:", error);
+      throw error;
+    }
   }
