@@ -9,13 +9,14 @@
 </head>
 <body>
     <div id="Juego">
+
         <div class="Apuestas">
             <button id="btn1" onclick="MostrarPantalla(1)">Apuestas</button>
-            <button id="btn2" onclick="MostrarPantalla(2)">Modificar Apuesta</button>
+            <button id="btn" class="btn" onclick="Juego()">Iniciar Juego</button>
             <button id="btn3" onclick="MostrarPantalla(3)">Instrucciones</button>
         </div>
         <div class="Mesa">
-            <button id="btn" class="btn" onclick="Juego()">Iniciar Juego</button>
+            
             <div class="Cartas">
                 <div class="CartaJugador">
                     <p id="MostrarCartaUsuario">J</p>
@@ -36,14 +37,6 @@
         <div id="Apuestas">
             <div id="PantallaOculta1">
                 <h1>¡Apostar!</h1>
-                <input type="text" id="apuesta-input" placeholder="Ingrese el monto de su apuesta">
-                <button onclick="guardarApuesta()">¡Apuesta!</button>
-            </div>
-        </div>
-
-        <div id="ModApuesta">
-            <div id="PantallaOculta1">
-                <h1>Modificar apuestas</h1>
                 <input type="text" id="apuesta-input" placeholder="Ingrese el monto de su apuesta">
                 <button onclick="guardarApuesta()">¡Apuesta!</button>
             </div>
@@ -90,9 +83,5 @@
     |           ♥            |
     |                        |
     |                        |
-    |                        |
     |                      ♥ |
     |                      A |
-    _________________________
-2
--->

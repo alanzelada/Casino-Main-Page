@@ -70,11 +70,13 @@ function Juego(){
             console.log("| Victoria para el jugador |");
             P_CartasJ += 1;
             Saldo = Saldo + (Apuesta * 1.15);
+            updateUserPoints(Saldo);
             Puntuacion.innerHTML = `Su apuesta actual es: ${Apuesta} <br> Su Saldo actual es: ${Saldo} <br> Punto para el jugador.<br>Jugador = ${P_CartasJ} | Maquina = ${P_CartasB}`;
         }else if(CartasJ < CartasB){
             console.log("| Victoria para el bot |");
             P_CartasB += 1;
             Saldo -= Apuesta;
+            updateUserPoints(-Saldo);
             Puntuacion.innerHTML = `Su apuesta actual es: ${Apuesta} <br> Su Saldo actual es: ${Saldo} <br> Punto para la maquina.<br>Jugador = ${P_CartasJ} | Maquina = ${P_CartasB}`;
         }else{
             console.log("Empate");
@@ -156,4 +158,63 @@ function Test_Errores(){
     console.log("Apuesta: " + Apuesta + " | " + "Saldo actual: " + Saldo);
     console.log("==============================");
     return 0;
+}
+
+// Conexion con otros juegos - BD
+
+
+let user = JSON.parse(localStorage.getItem('user'));
+
+async function updateUserPoints(pointsToAddOrSubtract) {
+    const apiUrl = "http://localhost/server/";
+    const requestOptions = {
+    method: "PUT",
+    headers: {
+        "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+    username: user.id,
+    points: pointsToAddOrSubtract,
+    }),
+};
+
+try {
+    response = await fetch(apiUrl, requestOptions)
+
+    if (response.ok) {
+        // Points updated successfully
+        console.log("Points updated successfully");
+        const id = user.id;
+        const points = await getUserPoints(id);
+        user = { id, points };
+        localStorage.setItem('user', JSON.stringify(user));
+    } else {
+      // Handle the error here
+        console.error("Error updating points");
+    }
+}
+catch (error) {
+    // Handle network or other errors
+    console.error("Error updating points:", error);
+}
+}
+
+async function getUserPoints(username) {
+    const apiUrl = `http://localhost/server/?username=${username}`;
+
+try {
+    const response = await fetch(apiUrl);
+    if (response.ok) {
+        const data = await response.json();
+        return data.points;
+    } else {
+        // Handle the error here
+        console.error("Error getting user points");
+        return null;
+    }
+} catch (error) {
+    // Handle network or other errors
+    console.error("Error getting user points:", error);
+    throw error;
+}
 }
