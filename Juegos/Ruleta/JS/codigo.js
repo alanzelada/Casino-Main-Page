@@ -65,9 +65,76 @@ document.getElementById('form-ingreso').addEventListener('submit', function(even
 */
 
 
+
+
+
+
+let user = JSON.parse(localStorage.getItem('user'));
+
+async function updateUserPoints(pointsToAddOrSubtract) {
+  const apiUrl = "http://localhost/server/";
+  const requestOptions = {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      username: user.id,
+      points: pointsToAddOrSubtract,
+    }),
+  };
+
+  try {
+    response = await fetch(apiUrl, requestOptions)
+
+    if (response.ok) {
+      // Points updated successfully
+      console.log("Points updated successfully");
+      const id = user.id;
+      const points = await getUserPoints(id);
+      user = { id, points };
+      localStorage.setItem('user', JSON.stringify(user));
+    } else {
+      // Handle the error here
+      console.error("Error updating points");
+    }
+  }
+  catch (error) {
+    // Handle network or other errors
+    console.error("Error updating points:", error);
+  }
+}
+
+async function getUserPoints(username) {
+  const apiUrl = `http://localhost/server/?username=${username}`;
+
+  try {
+    const response = await fetch(apiUrl);
+    if (response.ok) {
+      const data = await response.json();
+      return data.points;
+    } else {
+      // Handle the error here
+      console.error("Error getting user points");
+      return null;
+    }
+  } catch (error) {
+    // Handle network or other errors
+    console.error("Error getting user points:", error);
+    throw error;
+  }
+}
+
+
+
+
+
+
+
+
 function actualizarPuntos()
 {
-  document.getElementById("datosIngresados").textContent = 'Puntos: '+pts;
+  document.getElementById("datosIngresados").textContent = 'Puntos: '+getUserPoints(id);
 }
 
 function actualizarHistorial(){
@@ -692,8 +759,9 @@ function checkWin(numGanador){
       }
     }
   }
-  pts = parseInt(pts) + parseInt(suma);
-  pts = parseInt(pts) - parseInt(res);
+  
+  updateUserPoints(parseInt(suma))
+  updateUserPoints(-parseInt(res))
   suma = 0;
   res = 0; 
   actualizarPuntos();
