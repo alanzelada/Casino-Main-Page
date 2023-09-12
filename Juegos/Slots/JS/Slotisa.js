@@ -1,3 +1,7 @@
+const betInput = document.querySelector(".bet-input");
+
+let user = JSON.parse(localStorage.getItem('user'));
+
 const iconos = [];
 
 const image1 = "imagenes/bell.png";
@@ -101,6 +105,7 @@ function tirada() {
       mensaje.classList.add("ganaste");
       mensaje.textContent = "¡Ganaste!";
       mensajeContainer.appendChild(mensaje);
+      updateUserPoints(betInput.value)
 
       setTimeout(function () {
         mensaje.classList.remove("ganaste");
@@ -111,6 +116,7 @@ function tirada() {
       mensaje.classList.add("perdiste");
       mensaje.textContent = "¡Intentalo de nuevo!";
       mensajeContainer.appendChild(mensaje);
+      updateUserPoints(-betInput.value)
 
       setTimeout(function () {
         mensaje.classList.remove("perdiste");
@@ -130,7 +136,7 @@ function instrucciones() {
 }
 
 // Function to update user points using fetch
-function updateUserPoints(pointsToAddOrSubtract) {
+async function updateUserPoints(pointsToAddOrSubtract) {
   const apiUrl = "http://localhost/server/";
   const requestOptions = {
     method: "PUT",
@@ -143,20 +149,25 @@ function updateUserPoints(pointsToAddOrSubtract) {
     }),
   };
 
-  fetch(apiUrl, requestOptions)
-    .then((response) => {
-      if (response.ok) {
-        // Points updated successfully
-        console.log("Points updated successfully");
-      } else {
-        // Handle the error here
-        console.error("Error updating points");
-      }
-    })
-    .catch((error) => {
-      // Handle network or other errors
-      console.error("Error updating points:", error);
-    });
+  try {
+    response = await fetch(apiUrl, requestOptions)
+
+    if (response.ok) {
+      // Points updated successfully
+      console.log("Points updated successfully");
+      const id = user.id;
+      const points = await getUserPoints(id);
+      user = { id, points };
+      localStorage.setItem('user', JSON.stringify(user));
+    } else {
+      // Handle the error here
+      console.error("Error updating points");
+    }
+  }
+  catch (error) {
+    // Handle network or other errors
+    console.error("Error updating points:", error);
+  }
 }
 
 async function getUserPoints(username) {

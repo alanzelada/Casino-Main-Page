@@ -9,3 +9,18 @@ function openModal() {
     document.getElementById("myModal").style.display = "none";
     document.getElementById("myModal").classList.remove("modal-active");
   }
+
+  function openBet() {
+    document.getElementById("myBetModal").style.display = "flex";
+    document.getElementById("myBetModal").classList.add("modal-active");
+  }
+
+  // Función para cerrar el modal
+  async function closeBet() {
+    if(parseInt(betInput.value) > parseInt(await getUserPoints(user.id))){
+      alert("No puedes apostar tanto");
+      return;
+    }
+    document.getElementById("myBetModal").style.display = "none";
+    document.getElementById("myBetModal").classList.remove("modal-active");
+  }
