@@ -7,27 +7,24 @@
   <link rel="stylesheet" href="CSS/style.css">
 </head>
 <body>
-  <div class="buuton-back">
-            <a href="../../index.html" class="modal-open-2"><div><img src="./IMG/Coin-back.png" alt="" draggable="false"></div></a>
-        </div>
     <!--
-    <div class="caja-ingreso">
-        <img src="IMG/ruletaGiratoria.png" alt="">
-        <div class="contenedor-ingreso">
-            <form action="#" id="form-ingreso">
-              <h1>Ruleta</h1>
-              <h4>Ingresá tu nombre de usuario para jugar a la ruleta. Si no tenés uno, poné uno nuevo.</h4>
-              <label>
-                <i class="fa-solid fa-user"></i>
-                <input autofocus placeholder="Nombre de usuario" maxlength="10" required type="text" name="nombre">
-              </label>
-              
-              <button type="submit">INGRESAR</button>
-            </form>
+        <div class="caja-ingreso">
+            <img src="IMG/ruletaGiratoria.png" alt="">
+            <div class="contenedor-ingreso">
+                <form action="#" id="form-ingreso">
+                <h1>Ruleta</h1>
+                <h4>Ingresá tu nombre de usuario para jugar a la ruleta. Si no tenés uno, poné uno nuevo.</h4>
+                <label>
+                    <i class="fa-solid fa-user"></i>
+                    <input autofocus placeholder="Nombre de usuario" maxlength="10" required type="text" name="nombre">
+                </label>
+                
+                <button type="submit">INGRESAR</button>
+                </form>
+            </div>
         </div>
-
-    </div>
     -->
+
     <div id="noPts">
         <div>
             <h1>D:</h1>
@@ -53,15 +50,7 @@
     </div>
     <div class="contienepuntos">
         <div class="puntos">
-            <h3 id="datosIngresados"></h3>
-            <script>
-                var urlParams = new URLSearchParams(window.location.search);
-                var nombre = urlParams.get('nombre');
-                var puntos = urlParams.get('puntos');
-
-                var datosIngresados = document.getElementById("datosIngresados");
-                datosIngresados.textContent = "Puntos: " + puntos;
-            </script>
+            <h3 id="datosIngresados">Puntos: -</h3>
         </div>
     </div>
     <div id="myModal" class="modal">
@@ -89,10 +78,6 @@
                 <b style="font-weight: 800;">En caso de cualquier Error / Bug:</b> 
                 <br>
                 - Se puede reinciar el tablero presionando F7. 
-                <br>
-                - Se puede reinciar el juego completo presionando F5.
-                <br>
-                <i>En ninguno de los 2 casos perderás tus puntos acumulados.</i>
             </p>
         </div>
     </div>
