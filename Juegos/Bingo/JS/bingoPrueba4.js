@@ -140,16 +140,19 @@ let numerosSalientes = [];
                 if(fila1Bot.every(num => num === null || numerosSalientes.includes(num))){
                     console.log("¡LÍNEA EN LA PRIMERA FILA DEL BOT!");
                     filaCantada = true; // Marcar que la fila se ha cantado
+                        updateUserPoints(-betInput.value/4)
                 }
 
                 else if(fila2Bot.every(num => num === null || numerosSalientes.includes(num))){
                     console.log("¡LÍNEA EN LA SEGUNDA FILA DEL BOT!");
                     filaCantada = true; // Marcar que la fila se ha cantado
+                        updateUserPoints(-betInput.value/4)
                 }
 
                 else if(fila3Bot.every(num => num === null || numerosSalientes.includes(num))){
                     console.log("¡LÍNEA EN LA TERCERA FILA DEL BOT!");
                     filaCantada = true; // Marcar que la fila se ha cantado
+                        updateUserPoints(-betInput.value/4)
                 }
 
             }
@@ -163,6 +166,7 @@ let numerosSalientes = [];
                     mensaje.textContent="!GANO EL BOT!";
                     mensajeContainer.appendChild(mensaje);
                     bingoCantado = true;
+                        updateUserPoints(-betInput.value)
 
                     setTimeout(function () {
                         mensaje.classList.remove("perdiste");
@@ -353,11 +357,12 @@ botonFila.addEventListener("click", function () {
         if (fila1Coincide || fila2Coincide || fila3Coincide) {
             const mensaje = document.createElement("p");
             mensaje.classList.add("ganaste");
-            mensaje.textContent="!LINEA DE MERCAAA!";
+            mensaje.textContent="!LINEA DEL USUARIO!";
             mensajeContainer.appendChild(mensaje);
             // Deshabilitar el botón de "fila" después de cantar "LÍNEA"
             botonFila.disabled = true;
             filaCantada = true
+                updateUserPoints(betInput.value/4)
 
             setTimeout(function () {
                 mensaje.classList.remove("ganaste");
@@ -394,6 +399,7 @@ botonBingo.addEventListener("click", function (){
 
         botonBingo.disabled = true;
         bingoCantado = true;
+        updateUserPoints(betInput.value)
 
         setTimeout(function () {
             mensaje.classList.remove("ganaste");
@@ -409,6 +415,7 @@ botonBingo.addEventListener("click", function (){
         setTimeout(function () {
             mensaje.classList.remove("perdiste");
             mensajeContainer.removeChild(mensaje);
+                
         }, 2000);
     }
 }
@@ -416,3 +423,58 @@ botonBingo.addEventListener("click", function (){
     
     // Asocia la función generarNumeroAleatorio al evento click del botón
     document.getElementById("generarNumero").addEventListener("click", generarNumeroAleatorio);
+
+// Function to update user points using fetch
+async function updateUserPoints(pointsToAddOrSubtract) {
+  const apiUrl = "http://localhost/server/";
+  const requestOptions = {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      username: user.id,
+      points: pointsToAddOrSubtract,
+    }),
+  };
+
+  try {
+    response = await fetch(apiUrl, requestOptions)
+
+    if (response.ok) {
+      // Points updated successfully
+      console.log("Points updated successfully");
+      const id = user.id;
+      const points = await getUserPoints(id);
+      user = { id, points };
+      localStorage.setItem('user', JSON.stringify(user));
+    } else {
+      // Handle the error here
+      console.error("Error updating points");
+    }
+  }
+  catch (error) {
+    // Handle network or other errors
+    console.error("Error updating points:", error);
+  }
+}
+
+async function getUserPoints(username) {
+  const apiUrl = `http://localhost/server/?username=${username}`;
+
+  try {
+    const response = await fetch(apiUrl);
+    if (response.ok) {
+      const data = await response.json();
+      return data.points;
+    } else {
+      // Handle the error here
+      console.error("Error getting user points");
+      return null;
+    }
+  } catch (error) {
+    // Handle network or other errors
+    console.error("Error getting user points:", error);
+    throw error;
+  }
+}
