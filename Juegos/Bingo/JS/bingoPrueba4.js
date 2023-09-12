@@ -1,3 +1,6 @@
+const betInput = document.querySelector(".bet-input");
+
+let user = JSON.parse(localStorage.getItem('user'));
 const celdasUsuario = document.querySelectorAll(".tdUsuario");
 
 let filaCantada = false;
