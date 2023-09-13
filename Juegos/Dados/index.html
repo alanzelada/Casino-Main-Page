@@ -12,9 +12,7 @@
   </header>
   <section>
       <div class="apuestaJugar">
-      <p>Dinero disponible: $<span id="dineroDisponible"></span></p><br>
-      Ingresa tu apuesta: $<input type="number" id="apuesta" min="100" max="1000"><br>
-      Número a adivinar: <input type="number" id="usDado" min="2" max="12"><br>
+      Número a adivinar: <input type="number" id="usDado" min="2" max="12" value="6"><br>
       <div class="boton"><button onclick="tirarDados()">Confirmar apuesta y tirar dados</button><br></div>
       <p id="result"></p>
       <div class="container">
@@ -35,6 +33,19 @@
         <button onclick="MostrarInstrucciones()" class="modal-open instructions-open"><div><img src="images/coin-img.png" alt="coin-img" draggable="false"><p>Instruciones</p></div></button>
     </div>
   
+    <button onclick="openBet()" class="open-bet modal-open">
+      <div><img src="images/coin-img.png" alt="coin-img" draggable="false">
+          <p>Apuesta</p>
+      </div>
+  </button>
+  <div id="myBetModal" class="modal">
+      <img src="images/modal-img.png" alt="modal-background-img">
+      <span onclick="closeBet()" class="close">X</span>
+      <div class="modal-content" draggable="false">
+          <label for="bet-input">Apuesta</label>
+          <input type="number" name="bet-input" class="bet-input" id="bet-input" placeholder="000" value="1"
+              min="1">
+      </div>
     <div id="myModal" class="modal">
         <img src="images/modal-img.png" alt="modal-background-img">
         <span onclick="closeModal()" class="close">X</span>
