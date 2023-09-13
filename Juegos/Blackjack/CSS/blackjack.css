@@ -75,8 +75,8 @@ body {
     outline: 2px solid rgb(0, 0, 0);
 }
 #dealer-cards{
-    width: 80%;
-    margin-right: auto;
+    width: 90%;
+    margin: auto;
 }
 #dealer-cards img {
     height: 175px;
