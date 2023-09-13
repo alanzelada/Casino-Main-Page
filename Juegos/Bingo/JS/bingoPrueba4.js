@@ -143,19 +143,19 @@ let numerosSalientes = [];
                 if(fila1Bot.every(num => num === null || numerosSalientes.includes(num))){
                     console.log("¡LÍNEA EN LA PRIMERA FILA DEL BOT!");
                     filaCantada = true; // Marcar que la fila se ha cantado
-                        updateUserPoints(-betInput.value/4)
+                        updateUserPoints(-document.querySelector(".bet-input").value/4)
                 }
 
                 else if(fila2Bot.every(num => num === null || numerosSalientes.includes(num))){
                     console.log("¡LÍNEA EN LA SEGUNDA FILA DEL BOT!");
                     filaCantada = true; // Marcar que la fila se ha cantado
-                        updateUserPoints(-betInput.value/4)
+                        updateUserPoints(-document.querySelector(".bet-input").value/4)
                 }
 
                 else if(fila3Bot.every(num => num === null || numerosSalientes.includes(num))){
                     console.log("¡LÍNEA EN LA TERCERA FILA DEL BOT!");
                     filaCantada = true; // Marcar que la fila se ha cantado
-                        updateUserPoints(-betInput.value/4)
+                        updateUserPoints(-document.querySelector(".bet-input").value/4)
                 }
 
             }
@@ -169,7 +169,7 @@ let numerosSalientes = [];
                     mensaje.textContent="!GANO EL BOT!";
                     mensajeContainer.appendChild(mensaje);
                     bingoCantado = true;
-                        updateUserPoints(-betInput.value)
+                        updateUserPoints(-document.querySelector(".bet-input").value)
 
                     setTimeout(function () {
                         mensaje.classList.remove("perdiste");
@@ -365,7 +365,7 @@ botonFila.addEventListener("click", function () {
             // Deshabilitar el botón de "fila" después de cantar "LÍNEA"
             botonFila.disabled = true;
             filaCantada = true
-                updateUserPoints(betInput.value/4)
+                updateUserPoints(document.querySelector(".bet-input").value/4)
 
             setTimeout(function () {
                 mensaje.classList.remove("ganaste");
@@ -402,7 +402,7 @@ botonBingo.addEventListener("click", function (){
 
         botonBingo.disabled = true;
         bingoCantado = true;
-        updateUserPoints(betInput.value)
+        updateUserPoints(document.querySelector(".bet-input").value)
 
         setTimeout(function () {
             mensaje.classList.remove("ganaste");
