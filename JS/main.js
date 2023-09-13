@@ -87,7 +87,7 @@ function checkLogIn(element) {
   else {
     switch(element.id){
       case 'game1':{
-        window.location.href = "Juegos/Slots/index.html";
+        window.location.href = "Juegos/Slots/index-slot.html";
         break;
       }
       case 'game2':{
