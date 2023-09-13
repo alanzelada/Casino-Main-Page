@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+  <body>
+    <header>
+      <h1>¡Bienvenido al Juego de los Dados!</h1>
+  </header>
+  <section>
+      <div class="apuestaJugar">
+      <p>Dinero disponible: $<span id="dineroDisponible"></span></p><br>
+      Ingresa tu apuesta: $<input type="number" id="apuesta" min="100" max="1000"><br>
+      Número a adivinar: <input type="number" id="usDado" min="2" max="12"><br>
+      <div class="boton"><button onclick="tirarDados()">Confirmar apuesta y tirar dados</button><br></div>
+      <p id="result"></p>
+      <div class="container">
+
+        <div class="dice">
+          <p>Dado 1</p>
+            <img class="img1" src="images/dice6.png">
+        </div>
+
+        <div class="dice">
+          <p>Dado 2</p>
+            <img class="img2" src="images/dice6.png">
+        </div>
+
+      </div>
+    </div>
+  </section>
+        <button onclick="MostrarInstrucciones()" class="modal-open instructions-open"><div><img src="images/coin-img.png" alt="coin-img" draggable="false"><p>Instruciones</p></div></button>
+    </div>
+  
+    <div id="myModal" class="modal">
+        <img src="images/modal-img.png" alt="modal-background-img">
+        <span onclick="closeModal()" class="close">X</span>
+        <div class="modal-content" draggable="false">
+          <p>Instrucciones del juego de los dados<br>
+            1- El jugador deberá indicar cuánto dinero desea apostar.<br>
+            2- El jugador tendrá que elegir el monto total de los dados que saldrán.<br>
+            3- Una vez realizada la tirada, si el jugador acertó el resultado, se le dará el doble del dinero que apostó. En caso contrario, perderá
+            la cantidad seleccionada.<br>
+            4- Una vez finalizado el juego, el jugador tendrá la opción de volver a apostar (si es que tiene dinero disponible) y jugar o de salir. </p>
+        </div>
+    </div>
+  <script src="javas.js"></script>
+  </body>
+</html>
