@@ -186,6 +186,7 @@ input::-moz-focus-inner {
   animation: opacity 0.5s ease-in-out forwards;
 }
 
+
 .modal-open-2 {
   background: none;
   border: none;
@@ -198,6 +199,7 @@ input::-moz-focus-inner {
   height: 80px;
   top: 0;
   left: 0;
+  z-index: 999;
 }
 
 .modal-open-2::-moz-focus-inner,
