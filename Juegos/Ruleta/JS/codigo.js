@@ -771,7 +771,7 @@ function checkWin(numGanador){
     }
   }
 
-  suma = suma * 2;
+  suma = suma * 4;
   updateUserPoints(-res)
   updateUserPoints(suma)
 
