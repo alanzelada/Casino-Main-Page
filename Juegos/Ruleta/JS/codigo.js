@@ -7,6 +7,7 @@ var options = [
   "7", "28", "12", "35", "3", "26"
 ];
 
+var preocupacion = 0;
 var loggedIn = false;
 var nroRonda = 0;
 var startAngle = 180;
@@ -29,8 +30,7 @@ var selectedFicha = 10;
 var fieldState = new Array(48);
 var puntosAcum = 0;
 
-
-
+var recienIngresado = true;
 
 
 let user = JSON.parse(localStorage.getItem('user'));
@@ -134,13 +134,13 @@ document.getElementById('form-ingreso').addEventListener('submit', function(even
 
 
 
-var pts = 0
+var pts = 0; 
 
 actualizarPuntos();
 async function actualizarPuntos() {
   try {
     const puntos = await getUserPoints(user.id);
-    document.getElementById("datosIngresados").textContent = 'Puntos: ' + puntos;
+    document.getElementById("ptstotales__text").textContent = 'Puntos: ' + puntos;
     pts = puntos;
   } catch (error) {
     console.error("Error al obtener los puntos:", error);
@@ -200,7 +200,7 @@ function limpiarTablero(){
 }
 
 document.addEventListener("keydown", function(event) {
-  if (event.key === "F7") {
+  if (event.key === "T") {
     if(spinning === true){
       mensaje('Esperá a que gire la ruleta para resetear el tablero', 'red', 2);
     }
@@ -217,6 +217,8 @@ function markNumber(element)
       mensaje('Espera a que gire la ruleta para apostar', 'red', 2)
     }
     else if(spinning === false){
+      preocupacion = 100;
+      console.log('Nivel de preocupación restaurado')
       var idx = parseInt(element.getAttribute('data-index'));
 
       if(pts === 0){
@@ -614,7 +616,7 @@ function markNumber(element)
 
 function cuentaAtras(){
     var contadorElement = document.getElementById('contador');
-    var contador = 15;
+    var contador = 30;
 
     spinning = false;
 
@@ -769,10 +771,23 @@ function checkWin(numGanador){
     }
   }
 
+  suma = suma * 2;
   updateUserPoints(-res)
   updateUserPoints(suma)
-  mensaje('¡Ganaste '+suma+' puntos y perdiste '+res+' puntos! Salió el número '+numGanador, 'white', 1)
-  
+
+
+  if(suma === 0 && res === 0){
+      if(recienIngresado === true){
+        recienIngresado = false;
+      }
+      else{
+        mensaje('¡No apostaste ninguna ficha! Salió el número '+numGanador, 'white', 1);
+      }
+  }
+  else{
+    mensaje('¡Ganaste '+suma+' puntos y perdiste '+res+'! Salió el número '+numGanador, 'white', 1);
+  }
+
 
   suma = 0;
   res = 0; 
@@ -858,12 +873,21 @@ function spin() {
   
   spinAngleStart = Math.random() * 10 + 10;
   spinTime = 0;
-  spinTimeTotal = 7000; // tiempo girando
+
+  
+  spinTimeTotal = 9000;
 
   rotateWheel();
 
   mensaje('Apuestas cerradas', 'white', 1);
   mensaje('Esperá a que gire la ruleta', 'white', 2);
+
+
+  if(recienIngresado === true){
+    mensaje('¡Bienvenido/a a la ruleta!', 'white', 1);
+    mensaje('Si no sabés como jugar, hacé click en el botón de abajo a la izquierda "?"', 'white', 2);
+  }
+
 }
 
 function mensaje(mensaje, color, tipo){
@@ -905,7 +929,12 @@ function stopRotateWheel() {
   ctx.save();
   ctx.font = "bold 2.2rem 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif";
   var text = options[index];
-  ctx.fillText(text, 250 - ctx.measureText(text).width / 2, 250 + 10);
+  if(recienIngresado === true){
+    ctx.fillText('', 250 - ctx.measureText(text).width / 2, 250 + 10);
+  }
+  else{
+    ctx.fillText(text, 250 - ctx.measureText(text).width / 2, 250 + 10);
+  }
   ctx.restore();
 
   mensaje('Realice su apuesta por favor', 'white', 1);
@@ -913,17 +942,45 @@ function stopRotateWheel() {
   
   numGanador = parseInt(text);
   console.log('Numero ganador: '+text);
-  
+
+  if(preocupacion === 100){
+    preocupacion = 0;
+    console.log('Nivel de preocupación: '+preocupacion)
+  }
+  else{
+    if(document.getElementById("myModal").style.display === "none"){
+      preocupacion++;
+    }
+    console.log('Nivel de preocupación: '+preocupacion)
+
+    if(preocupacion === 2){
+      document.getElementById('boxPreocupado').style.display = 'flex';
+      preocupacion = 0;
+      console.log('Nivel de preocupación: '+preocupacion)
+    }
+  }
 
   checkWin(numGanador);
   nroRonda++;
   console.log ('Ronda en curso: '+nroRonda);
 }
 
+function okBoton(){
+  document.getElementById('boxPreocupado').style.display = 'none';
+}
+function ayudaBoton(){
+  document.getElementById('boxPreocupado').style.display = 'none';
+  document.getElementById("myModal").style.display = "flex";
+  document.getElementById("myModal").classList.add("modal-active");
+}
+
+
 function easeOut(t, b, c, d) {
   var ts = (t /= d) * t;
   var tc = ts * t;
   return b + c * (tc + -3 * ts + 3 * t);
 }
+
+
 
 spin();
