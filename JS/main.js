@@ -22,7 +22,7 @@ loginForm.addEventListener("submit", async (e) => {
       return;
     }
     // ID exists, you can proceed with the login
-    alert("Login successful!");
+    alert("Sesión iniciada con éxito.\nPresione 'Aceptar' para continuar.");
 
 
     user = { id, points };
@@ -35,7 +35,7 @@ loginForm.addEventListener("submit", async (e) => {
   } 
   catch (error) {
     console.error(error);
-    alert("Error fetching user data.");
+    alert("Error al buscar datos de usuario.");
   }
 });
 
