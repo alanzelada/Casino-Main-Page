@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,7 +8,7 @@
 </head>
 <body>
     <div class="buuton-back">
-        <a href="../../index.html" class="modal-open-2"><div><img src="./IMG/Coin-back.png" alt="" draggable="false"></div></a>
+        <a href="../../index.html" class="modal-open-2"><div><img src="./IMG/Coin-back.png" alt="" draggable="false"></div> </a>
     </div>
     <!--
         <div class="caja-ingreso">
@@ -28,15 +28,18 @@
         </div>
     -->
 
-    <div id="noPts">
+    <div id="boxPreocupado">
         <div>
-            <h1>D:</h1>
-            <h2>¡Te quedaste sin puntos!</h2>
-            <h3>No tenés más puntos, por ende tampoco posibilidades de apostar <br> ¡Gracias por jugar!</h3>
+            <h1>¿Hay alguien ahí?</h1>
+            <h2>Pasó una ronda completa sin que se realice ninguna apuesta. ¿Necesitas ayuda?</h2>
+            <nav>
+                <a onclick="okBoton()">Volver</a>
+                <a onclick="ayudaBoton()">Ayuda</a>
+            </nav>
         </div>
     </div>
     <div class="reglas">
-        <button onclick="openModal()" class="modal-open"><div><img src="IMG/coin-img.png" alt="coin-img" draggable="false"><p>Ayuda</p></div></button>
+        <button onclick="openModal()" class="modal-open"><div><img src="IMG/coin-img.png" alt="coin-img" draggable="false"></div></button>
     </div>
     <div class="historial">
         <section>
@@ -53,7 +56,7 @@
     </div>
     <div class="contienepuntos">
         <div class="puntos">
-            <h3 id="datosIngresados">Puntos: sas</h3>
+            <h3 id="ptstotales__text">Puntos: CARGANDO...</h3>
         </div>
     </div>
     <div id="myModal" class="modal">
@@ -61,26 +64,50 @@
         <h2 onclick="closeModal()" class="close">×</h2>
         <div class="modal-content" draggable="false">
             <p>
-                <b style="font-weight: 800;">Instrucciones:</b>
-                <br>
-                Se tienen cinco fichas de cinco valores diferentes: (1 - 5 - 10 - 20 - 50). Estas fichas se pueden apostar en cualquiera de los 49 casilleros númericos y no numéricos disponibles en el tablero. 
-                Existen 12 casilleros donde solo está permitido apostar con fichas mayores a 20. 
-                La ruleta gira automáticamente cada 40 segundos.
-                Una vez girada la ruleta, en el caso de que hayas apostado al número ganador, se te sumará la cantidad de puntos de la ficha apostada a dicho número multiplicada por 2; y a la vez se te restarán los puntos de las fichas apostadas en casilleros no ganadores.
-                Los puntos que se suman/restan son el número de cada ficha.
-                <br>
-                <br>
-                <b style="font-weight: 800;">Controles:</b>
-                <br>
-                -	Podés elegir en el menú que se encuentra debajo del tablero la ficha que desees apostar, haciendo click sobre ella.
-                <br>
-                -	Luego de escoger la ficha, deberás clickear sobre el casillero donde desees apostarla. 
-                <br>
-                -	Una vez pasados los 40 segundos de apuestas, se bloqueará el tablero y la ruleta girará automáticamente y se mostrará el número ganador. Cuando deje de girar la ruleta, podrás apostar nuevamente.
+                <b style="font-weight: 900; text-decoration: underline;">1. Guía rápida:</b>
                 <br> <br>
-                <b style="font-weight: 800;">En caso de cualquier Error / Bug:</b> 
+
+                Se tienen cinco fichas de cinco valores diferentes: (1 - 5 - 10 - 20 - 50). Estas fichas se pueden apostar en cualquiera de los casilleros.
                 <br>
-                - Se puede reinciar el tablero presionando F7. 
+                Luego de hacer tu apuesta, tendrás que esperar los 30 segundos para que la ruleta gire automáticamente.
+                
+                Una vez girada la ruleta, en el caso de que hayas apostado al número o casillero ganador, se te sumará la cantidad de puntos de la ficha que hayas puesto en ese número/casillero multiplicada por 3; y a la vez se te restan los puntos de las fichas puestas en números/casilleros no ganadores.
+                
+                <br> <br>
+                <b style="font-weight: 900; text-decoration: underline;">2. Ejemplo de juego:</b>
+                <br> <br>
+                
+                Por ejemplo si apostás una ficha de 20 al número 32 y sale ese número, vas a ganar 20 multiplicado por 3, es decir 60 puntos.
+                <br>
+                Por otro lado, si apostás esa ficha de 20 a un número que no es el que salga en la ruleta, simplemente se le restará 20 puntos a tu puntaje total.
+                
+                <br> <br>
+                <b style="font-weight: 900; text-decoration: underline;">3. Aclaraciones:</b>
+                <br> <br>
+                
+                - Las apuestas se pueden hacer solo cuando la ruleta está quieta.
+                <br>
+                - La ruleta gira automáticamente durante 9 segundos cada 30 segundos.
+                <br>
+                - Las fichas se eligen haciendo click sobre ellas en la franja verde que está debajo del tablero.
+                <br>
+                - En los casilleros especiales (“2 a 1”, “Docenas”, “Par e Impar”, “1-18 - 19-36”, “Rojo y negro”) solo se pueden poner fichas cuyo valor sea 20 o 50.
+                <br>
+                - En caso de cualquier error/bug se puede reiniciar el tablero con ‘T’ o el juego completo con F5.
+                
+                <br> <br>
+                <b style="font-weight: 900; text-decoration: underline;">4. Casilleros especiales:</b>
+                <br> <br>
+                - 2 a 1: Se apuesta a toda la fila de ese casillero.
+                <br>
+                - Docenas: Se apuesta a los primeros, segundos o terceros grupos de 12.
+                <br>
+                - 1-18 y 19-36: Se apuesta a los números que están entre esos valores. Solo se puede apostar a uno de ellos.
+                <br>
+                - PAR e IMPAR: Se apuesta a todos los números pares o impares (el 0 no es par ni impar). Solo se puede apostar a uno de ellos.
+                <br>
+                - Rojo y Negro: Se apuesta solo a uno de esos colores. Solo se puede apostar a uno de ellos.
+                
             </p>
         </div>
     </div>
@@ -213,7 +240,7 @@
                     </div>
                 </div>
             </div>
-            <h1 id="contador">40s</h1>
+            <h1 id="contador">30s</h1>
         </div>
         <div class="inventario">
             <div class="menuFichas">
