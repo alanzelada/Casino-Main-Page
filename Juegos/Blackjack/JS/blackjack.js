@@ -235,3 +235,12 @@ async function updateUserPoints(pointsToAddOrSubtract) {
       throw error;
     }
   }
+actualizarPuntos();
+async function actualizarPuntos() {
+  try {
+    const puntos = await getUserPoints(user.id);
+    document.getElementById("ptstotales__text").textContent = 'Puntos: ' + puntos;
+  } catch (error) {
+    console.error("Error al obtener los puntos:", error);
+  }
+}
