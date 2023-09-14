@@ -224,7 +224,7 @@ function markNumber(element)
       }
       if(selectedField[idx] === 0 && puntosAcum + selectedFicha > pts){
         mensaje('¡Puntos insuficientes!', 'white', 1)
-        mensaje('Estás intentando apostar '+(puntosAcum + selectedFicha)+' en fichas teniendo solo '+pts+' puntos', 'white', 2)
+        mensaje('Estás intentando apostar '+(puntosAcum + selectedFicha)+' en fichas teniendo '+pts+' puntos', 'white', 2)
       }
       if(selectedField[idx] === 0 && puntosAcum + selectedFicha <= pts){
         var imagen = document.createElement('img');
