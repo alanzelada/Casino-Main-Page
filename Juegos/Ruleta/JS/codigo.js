@@ -31,42 +31,6 @@ var puntosAcum = 0;
 
 
 
-for(var y = 0; y <= 48; y++){
-  selectedField[y] = 0;
-  fieldState[y] = false;
-}
-
-function getParametroValor(nombre)
-{
-  var urlParams = new URLSearchParams(window.location.search);
-  return urlParams.get(nombre);
-}
-
-var pts = 100;
-/*
-document.getElementById('form-ingreso').addEventListener('submit', function(event) {
-  event.preventDefault();
-
-  var userName = document.querySelector('input[name="nombre"]').value;
-  //let userPts = document.querySelector('input[name="puntos"]').value;
-
-  console.log('Nombre: ' + userName);
-  document.getElementById('userName').textContent = userName;
-  //console.log('Puntos: ' + userPts);
-  
-  //pts = parseInt(userPts);
-  actualizarPuntos();
-
-  document.querySelector('.caja-ingreso').style.display = 'none';
-  
-  loggedIn = true;
-  
-});
-*/
-
-
-
-
 
 
 let user = JSON.parse(localStorage.getItem('user'));
@@ -90,10 +54,11 @@ async function updateUserPoints(pointsToAddOrSubtract) {
     if (response.ok) {
       // Points updated successfully
       console.log("Points updated successfully");
-      const id = user.id;
+      var id = user.id;
       const points = await getUserPoints(id);
       user = { id, points };
       localStorage.setItem('user', JSON.stringify(user));
+      actualizarPuntos();
     } else {
       // Handle the error here
       console.error("Error updating points");
@@ -104,6 +69,7 @@ async function updateUserPoints(pointsToAddOrSubtract) {
     console.error("Error updating points:", error);
   }
 }
+
 
 async function getUserPoints(username) {
   const apiUrl = `http://localhost/server/?username=${username}`;
@@ -130,11 +96,55 @@ async function getUserPoints(username) {
 
 
 
+for(var y = 0; y <= 48; y++){
+  selectedField[y] = 0;
+  fieldState[y] = false;
+}
 
-
-function actualizarPuntos()
+function getParametroValor(nombre)
 {
-  document.getElementById("datosIngresados").textContent = 'Puntos: '+getUserPoints(id);
+  var urlParams = new URLSearchParams(window.location.search);
+  return urlParams.get(nombre);
+}
+
+/*
+document.getElementById('form-ingreso').addEventListener('submit', function(event) {
+  event.preventDefault();
+
+  var userName = document.querySelector('input[name="nombre"]').value;
+  //let userPts = document.querySelector('input[name="puntos"]').value;
+
+  console.log('Nombre: ' + userName);
+  document.getElementById('userName').textContent = userName;
+  //console.log('Puntos: ' + userPts);
+  
+  //pts = parseInt(userPts);
+  actualizarPuntos();
+
+  document.querySelector('.caja-ingreso').style.display = 'none';
+  
+  loggedIn = true;
+  
+});
+*/
+
+
+
+
+
+
+
+var pts = 0
+
+actualizarPuntos();
+async function actualizarPuntos() {
+  try {
+    const puntos = await getUserPoints(user.id);
+    document.getElementById("datosIngresados").textContent = 'Puntos: ' + puntos;
+    pts = puntos;
+  } catch (error) {
+    console.error("Error al obtener los puntos:", error);
+  }
 }
 
 function actualizarHistorial(){
@@ -604,7 +614,7 @@ function markNumber(element)
 
 function cuentaAtras(){
     var contadorElement = document.getElementById('contador');
-    var contador = 40;
+    var contador = 15;
 
     spinning = false;
 
@@ -634,7 +644,6 @@ function checkWin(numGanador){
   {
     var win = true;
     console.log('El jugador ganó con ficha de '+selectedField[numGanador]+' en el casillero '+numGanador);
-    mensaje('¡Ganaste! Salió el número '+numGanador, 'white', 1)
   }
   for (var num = 0; num <= 36; num++) {
     /* SUMAR PUNTOS */
@@ -759,12 +768,14 @@ function checkWin(numGanador){
       }
     }
   }
+
+  updateUserPoints(-res)
+  updateUserPoints(suma)
+  mensaje('¡Ganaste '+suma+' puntos y perdiste '+res+' puntos! Salió el número '+numGanador, 'white', 1)
   
-  updateUserPoints(parseInt(suma))
-  updateUserPoints(-parseInt(res))
+
   suma = 0;
   res = 0; 
-  actualizarPuntos();
   actualizarHistorial();
   limpiarTablero();
   cuentaAtras();
@@ -847,7 +858,7 @@ function spin() {
   
   spinAngleStart = Math.random() * 10 + 10;
   spinTime = 0;
-  spinTimeTotal = 10000; // tiempo girando
+  spinTimeTotal = 7000; // tiempo girando
 
   rotateWheel();
 
@@ -902,6 +913,7 @@ function stopRotateWheel() {
   
   numGanador = parseInt(text);
   console.log('Numero ganador: '+text);
+  
 
   checkWin(numGanador);
   nroRonda++;
