@@ -166,7 +166,6 @@ canvas.addEventListener("touchend", function (event) {
 canvas.addEventListener("touchmove", scratchPaint);
 
 
-/*Todos los comentarios mulilineas tienen que estar cerrados o terminados pq sino da error y no funciona*/
 
 function playWinSound() {
     const winSound = document.getElementById('winSound');
@@ -192,10 +191,6 @@ function getRandomColor() {
 
     return color;
 }
-
-var confettiSettings = { target: 'my-canvas' };
-var confetti = new ConfettiGenerator(confettiSettings);
-confetti.render();
 
 // Function to update user points using fetch
 async function updateUserPoints(pointsToAddOrSubtract) {
