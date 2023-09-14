@@ -22,7 +22,7 @@ loginForm.addEventListener("submit", async (e) => {
       return;
     }
     // ID exists, you can proceed with the login
-    alert("Sesión iniciada con éxito.\nPresione 'Aceptar' para continuar.");
+    alert("Sesión iniciada con éxito.\nAhora podés jugar a cualquier juego del casino.");
 
 
     user = { id, points };
