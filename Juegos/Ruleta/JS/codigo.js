@@ -7,6 +7,14 @@ var options = [
   "7", "28", "12", "35", "3", "26"
 ];
 
+const audioWin = document.getElementById('audioPlayer_win');
+const audioLose = document.getElementById('audioPlayer_lose');
+const audioSpin = document.getElementById('audioPlayer_spin');
+const audioChip = document.getElementById('audioPlayer_chip');
+const audioClick = document.getElementById('audioPlayer_click');
+
+var spinRightNow = false;
+
 var preocupacion = 0;
 var loggedIn = false;
 var nroRonda = 0;
@@ -159,7 +167,7 @@ function actualizarHistorial(){
   }
 
   newestResults[newestResults.length - 1] = numGanador;
-  console.log(newestResults)
+  //console.log(newestResults)
 
   document.getElementById('result-1').textContent = newestResults[4];
   document.getElementById('result-2').textContent = newestResults[3];
@@ -174,6 +182,10 @@ function selectFicha(element) {
   divFichaSelec.style.backgroundImage = 'url(IMG/f' + ind + '.png)';
   selectedFicha = parseInt(ind);
   console.log('Ficha ' + ind + ' seleccionada');
+
+  audioClick.pause();
+  audioClick.currentTime = 0;
+  audioClick.play();
 }
 
 function limpiarTablero(){
@@ -196,17 +208,19 @@ function limpiarTablero(){
   for(let n = 1; n <= 36; n++){
     document.getElementById(n).style.opacity = '100%';
   }
-  console.log('Tablero limpiado. Array:'+selectedField)
+  console.log('Tablero restablecido.')
+  //console.log(selectedField)
 }
 
 document.addEventListener("keydown", function(event) {
-  if (event.key === "T") {
+  if (event.key === "F9") {
     if(spinning === true){
       mensaje('Esperá a que gire la ruleta para resetear el tablero', 'red', 2);
     }
     else{
       limpiarTablero();
       mensaje('F7 - Tablero reseteado con éxito', 'white', 2);
+      console.log('Tablero reiniciado')
     }
   }
 });
@@ -214,13 +228,19 @@ document.addEventListener("keydown", function(event) {
 function markNumber(element)
 {
     if(spinning === true){
-      mensaje('Espera a que gire la ruleta para apostar', 'red', 2)
+      mensaje('Espera a que gire la ruleta para apostar o quitar fichas.', 'red', 2)
     }
     else if(spinning === false){
-      preocupacion = 100;
-      console.log('Nivel de preocupación restaurado')
+      if(preocupacion != 0){
+        preocupacion = 100;
+        console.log('Nivel de preocupación restaurado por interacción')
+      }
       var idx = parseInt(element.getAttribute('data-index'));
 
+      audioChip.pause();
+      audioChip.currentTime = 0;
+      audioChip.play();
+      
       if(pts === 0){
         document.getElementById('noPts').style.display = 'flex';
       }
@@ -239,7 +259,7 @@ function markNumber(element)
         selectedField[idx] = selectedFicha;
         fieldState[idx] = true;
   
-        console.log('Ficha '+selectedFicha+' colocada en el casillero '+idx);
+        console.log('Ficha '+selectedFicha+' colocada en casillero '+idx);
   
         element.querySelector('h1').style.display = 'none';
         element.appendChild(imagen);
@@ -253,7 +273,7 @@ function markNumber(element)
               }
             }
             else{
-              if(selectedFicha >= 20){
+              if(selectedField[38] != 0 || selectedField[39]  != 0){
                 mensaje('Solo podés apostar a un solo casillero de 2 A 1', 'white', 2);
               }
               else{
@@ -277,7 +297,7 @@ function markNumber(element)
               }
             }
             else{
-              if(selectedFicha >= 20){
+              if(selectedField[37] != 0 || selectedField[39]  != 0){
                 mensaje('Solo podés apostar a un solo casillero de 2 A 1', 'white', 2);
               }
               else{
@@ -300,7 +320,7 @@ function markNumber(element)
               }
             }
             else{
-              if(selectedFicha >= 20){
+              if(selectedField[37] != 0 || selectedField[38]  != 0){
                 mensaje('Solo podés apostar a un solo casillero de 2 A 1', 'white', 2);
               }
               else{
@@ -377,7 +397,12 @@ function markNumber(element)
               }
             }
             else{
-              mensaje('Solo podés apostar con fichas de 20 o 50 en esta casilla (1-18)', 'white', 2);
+              if(selectedField[48] != 0){
+                mensaje('No podés apostar a la casilla 1-18 teniendo una ficha sobre la casilla 19-36', 'white', 2);
+              }
+              else{
+                mensaje('Solo podés apostar con fichas de 20 o 50 en esta casilla (1-18)', 'white', 2);
+              }
               var imagen = element.querySelector('img');
               element.querySelector('h1').style.display = 'flex';
               selectedField[idx] = 0;
@@ -395,7 +420,12 @@ function markNumber(element)
               }
             }
             else{
-              mensaje('Solo podés apostar con fichas de 20 o 50 en esta casilla (PAR)', 'white', 2);
+              if(selectedField[47] != 0){
+                mensaje('No podés apostar a la casilla PAR teniendo una ficha sobre la casilla IMPAR', 'white', 2);
+              }
+              else{
+                mensaje('Solo podés apostar con fichas de 20 o 50 en esta casilla (PAR)', 'white', 2);
+              }
               var imagen = element.querySelector('img');
               element.querySelector('h1').style.display = 'flex';
               selectedField[idx] = 0;
@@ -416,7 +446,12 @@ function markNumber(element)
               }
             }
             else{
-              mensaje('Solo podés apostar con fichas de 20 o 50 en esta casilla (ROJO)', 'white', 2);
+              if(selectedField[46] != 0){
+                mensaje('No podés apostar a la casilla "ROJO" teniendo una ficha sobre la casilla "NEGRO"', 'white', 2);
+              }
+              else{
+                mensaje('Solo podés apostar con fichas de 20 o 50 en esta casilla (Color Rojo)', 'white', 2);
+              }
               var imagen = element.querySelector('img');
               element.querySelector('h1').style.display = 'flex';
               selectedField[idx] = 0;
@@ -437,7 +472,12 @@ function markNumber(element)
               }
             }
             else{
-              mensaje('Solo podés apostar con fichas de 20 o 50 en esta casilla (NEGRO)', 'white', 2);
+              if(selectedField[45] != 0){
+                mensaje('No podés apostar a la casilla "NEGRO" teniendo una ficha sobre la casilla "ROJO"', 'white', 2);
+              }
+              else{
+                mensaje('Solo podés apostar con fichas de 20 o 50 en esta casilla (Color Negro)', 'white', 2);
+              }
               var imagen = element.querySelector('img');
               element.querySelector('h1').style.display = 'flex';
               selectedField[idx] = 0;
@@ -455,7 +495,12 @@ function markNumber(element)
               }
             }
             else{
-              mensaje('Solo podés apostar con fichas de 20 o 50 en esta casilla (IMPAR)', 'white', 2);
+              if(selectedField[44] != 0){
+                mensaje('No podés apostar a la casilla IMPAR teniendo una ficha sobre la casilla PAR', 'white', 2);
+              }
+              else{
+                mensaje('Solo podés apostar con fichas de 20 o 50 en esta casilla (IMPAR)', 'white', 2);
+              }
               var imagen = element.querySelector('img');
               element.querySelector('h1').style.display = 'flex';
               selectedField[idx] = 0;
@@ -473,7 +518,12 @@ function markNumber(element)
               }
             }
             else{
-              mensaje('Solo podés apostar con fichas de 20 o 50 en esta casilla (19-36)', 'white', 2);
+              if(selectedField[43] != 0){
+                mensaje('No podés apostar a la casilla 19-36 teniendo una ficha sobre la casilla 1-18', 'white', 2);
+              }
+              else{
+                mensaje('Solo podés apostar con fichas de 20 o 50 en esta casilla (19-36)', 'white', 2);
+              }
               var imagen = element.querySelector('img');
               element.querySelector('h1').style.display = 'flex';
               selectedField[idx] = 0;
@@ -485,14 +535,14 @@ function markNumber(element)
         }
         if(fieldState[idx] === true){
             puntosAcum = puntosAcum + selectedFicha;
-            console.log("puntos apostados:"+puntosAcum);
+            console.log("+"+selectedFicha+" puntos de apuesta acumulados (Total "+puntosAcum+")");
         }
       }
       else if(fieldState[idx] === true){
         var imagen = element.querySelector('img');
         element.querySelector('h1').style.display = 'flex';
         puntosAcum = puntosAcum - selectedField[idx];
-        console.log("puntos apostados:"+puntosAcum);
+        console.log("-"+selectedField[idx]+" puntos de apuesta acumulados (Total "+puntosAcum+")");
 
         selectedField[idx] = 0;
         fieldState[idx] = false;
@@ -610,29 +660,46 @@ function markNumber(element)
         }
       }
     }
-    console.log('selectedField['+idx+'] = '+selectedField[idx]);
-    console.log(selectedField)
+    //console.log('selectedField['+idx+'] = '+selectedField[idx]);
+    //console.log(selectedField)
 }
 
 function cuentaAtras(){
     var contadorElement = document.getElementById('contador');
-    var contador = 30;
+    var spinNowElement = document.getElementById('spinNow');
+    var contador = 40;
 
     spinning = false;
 
-    var intervalo = setInterval(function() {
+    const intervalo = setInterval(function() {
     contador--;
     contadorElement.textContent = contador + 's';
+
+    
+    spinNowElement.textContent = 'GIRAR YA';
+    spinNowElement.style.display = 'flex';
+    spinNowElement.style.color = 'white';
+    spinNowElement.style.backgroundColor = '#47b850';
+    spinNowElement.style.outline = '1px solid white';
+    spinNowElement.style.cursor = 'pointer';
 
     if (contador <= 10){
       contadorElement.style.color = '#ad2525';
       if(contador === 1) mensaje('Las apuestas cerrarán en un segundo', 'red', 1);
       else mensaje('Las apuestas cerrarán en ' +contador+ ' segundos', 'red', 1);
     }
-    if (contador === 0) {
+    if (contador === 0 || spinRightNow === true) {
+      spinRightNow = false;
       clearInterval(intervalo);
       contadorElement.textContent = '...';
       contadorElement.style.color = 'white';
+
+      spinNowElement.textContent = 'Girando ...';
+      spinNowElement.style.fontSize = '0.9rem';
+      spinNowElement.style.color = 'gray';
+      spinNowElement.style.backgroundColor = '#111111';
+      spinNowElement.style.outline = 'none';
+      spinNowElement.style.cursor = 'default';
 
       spin();
     }
@@ -771,7 +838,7 @@ function checkWin(numGanador){
     }
   }
 
-  suma = suma * 4;
+  suma = suma * 2;
   updateUserPoints(-res)
   updateUserPoints(suma)
 
@@ -781,13 +848,54 @@ function checkWin(numGanador){
         recienIngresado = false;
       }
       else{
+        if(preocupacion === 100){
+          preocupacion = 0;
+          console.log('Nivel de preocupación: '+preocupacion)
+        }
+        else{
+          if(document.getElementById("myModal").style.display != "flex"){
+            preocupacion++;
+          }
+          if(preocupacion === 2){
+            document.getElementById('boxPreocupado').style.display = 'flex';
+            preocupacion = 0;
+          }
+
+          console.log('Nivel de preocupación: '+preocupacion);
+        }
+
         mensaje('¡No apostaste ninguna ficha! Salió el número '+numGanador, 'white', 1);
       }
   }
-  else{
-    mensaje('¡Ganaste '+suma+' puntos y perdiste '+res+'! Salió el número '+numGanador, 'white', 1);
-  }
+  else {
+    mensaje('¡Ganaste ' + suma + ' puntos y perdiste ' + res + '! Salió el número ' + numGanador, 'white', 1);
 
+    var textPlusPoint = '';
+    if(suma-res < 0){
+      textPlusPoint = (suma-res);
+    }
+    
+    if(suma-res > 0){
+      textPlusPoint = '+'+(suma-res);
+    }
+
+    if (suma > 0 && suma > res) {
+        audioWin.play();
+        document.getElementById('pluspoint').style.display = 'none';
+        setTimeout(function () {
+            document.getElementById('pluspoint').style.display = 'flex';
+            document.getElementById('pluspoint').textContent = textPlusPoint;
+        }, 2);
+    } 
+    else if (suma <= res) {
+        audioLose.play();
+        document.getElementById('pluspoint').style.display = 'none';
+        setTimeout(function () {
+            document.getElementById('pluspoint').style.display = 'flex';
+            document.getElementById('pluspoint').textContent = textPlusPoint;
+        }, 2); 
+    }
+  }
 
   suma = 0;
   res = 0; 
@@ -870,17 +978,18 @@ function spin() {
   spinning = true;
 
   //if (spinTimeout !== null) return; // Evitar múltiples giros al hacer clic repetidamente
+  audioSpin.play();
   
   spinAngleStart = Math.random() * 10 + 10;
   spinTime = 0;
 
   
-  spinTimeTotal = 9000;
+  spinTimeTotal = 7500;
 
   rotateWheel();
 
   mensaje('Apuestas cerradas', 'white', 1);
-  mensaje('Esperá a que gire la ruleta', 'white', 2);
+  mensaje('Esperá a que gire la ruleta para apostar', 'white', 2);
 
 
   if(recienIngresado === true){
@@ -938,31 +1047,15 @@ function stopRotateWheel() {
   ctx.restore();
 
   mensaje('Realice su apuesta por favor', 'white', 1);
-  mensaje('Apuestas abiertas', 'white', 2);
+  mensaje('Selecciona una ficha y apostala en cualquier lugar del tablero', 'white', 2);
   
   numGanador = parseInt(text);
   console.log('Numero ganador: '+text);
 
-  if(preocupacion === 100){
-    preocupacion = 0;
-    console.log('Nivel de preocupación: '+preocupacion)
-  }
-  else{
-    if(document.getElementById("myModal").style.display === "none"){
-      preocupacion++;
-    }
-    console.log('Nivel de preocupación: '+preocupacion)
-
-    if(preocupacion === 2){
-      document.getElementById('boxPreocupado').style.display = 'flex';
-      preocupacion = 0;
-      console.log('Nivel de preocupación: '+preocupacion)
-    }
-  }
 
   checkWin(numGanador);
   nroRonda++;
-  console.log ('Ronda en curso: '+nroRonda);
+  console.log ('\n||---- RONDA N°'+nroRonda+' ----||');
 }
 
 function okBoton(){
@@ -981,6 +1074,14 @@ function easeOut(t, b, c, d) {
   return b + c * (tc + -3 * ts + 3 * t);
 }
 
-
+function spinNow(){
+  if(spinning === false){
+    spinRightNow = true;
+    console.log('Giro instantáneo solicitado')
+    audioClick.pause();
+    audioClick.currentTime = 0;
+    audioClick.play();
+  }
+}
 
 spin();
