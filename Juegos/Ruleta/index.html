@@ -10,6 +10,11 @@
     <div class="buuton-back">
         <a href="../../index.html" class="modal-open-2"><div><img src="./IMG/Coin-back.png" alt="" draggable="false"></div> </a>
     </div>
+    <audio id="audioPlayer_lose" src="AUD/game-lose.mp3" controls></audio>
+    <audio id="audioPlayer_win" src="AUD/game-win.mp3" controls></audio>
+    <audio id="audioPlayer_spin" src="AUD/spin.mp3" controls></audio>
+    <audio id="audioPlayer_chip" src="AUD/chip.mp3" controls></audio>
+    <audio id="audioPlayer_click" src="AUD/click.mp3" controls></audio>
     <!--
         <div class="caja-ingreso">
             <img src="IMG/ruletaGiratoria.png" alt="">
@@ -58,6 +63,7 @@
         <div class="puntos">
             <h3 id="ptstotales__text">Puntos: CARGANDO...</h3>
         </div>
+        <h4 id="pluspoint">+0</h4>
     </div>
     <div id="myModal" class="modal">
         <img src="IMG/modal-img.png" alt="modal-background-img">
@@ -69,15 +75,15 @@
 
                 Se tienen cinco fichas de cinco valores diferentes: (1 - 5 - 10 - 20 - 50). Estas fichas se pueden apostar en cualquiera de los casilleros.
                 <br>
-                Luego de hacer tu apuesta, tendrás que esperar los 30 segundos para que la ruleta gire automáticamente.
+                Luego de hacer tu apuesta, podés hacer girar la ruleta haciendo click en el botón "GIRAR" que aparece debajo del tablero, de todas formas la ruleta girará automáticamente cada 40 segundos.
                 
-                Una vez girada la ruleta, en el caso de que hayas apostado al número o casillero ganador, se te sumará la cantidad de puntos de la ficha que hayas puesto en ese número/casillero multiplicada por 4; y a la vez se te restan los puntos de las fichas puestas en números/casilleros no ganadores.
+                Una vez girada la ruleta, en el caso de que hayas apostado al número o casillero ganador, se te sumará la cantidad de puntos de la ficha que hayas puesto en ese número/casillero multiplicada por 2; y a la vez se te restan los puntos de las fichas puestas en números/casilleros no ganadores.
                 
                 <br> <br>
                 <b style="font-weight: 900; text-decoration: underline;">2. Ejemplo de juego:</b>
                 <br> <br>
                 
-                Por ejemplo si apostás una ficha de 20 al número 32 y sale ese número, vas a ganar 20 multiplicado por 3, es decir 60 puntos.
+                Por ejemplo si apostás una ficha de 20 al número 32 y sale ese número, vas a ganar 20 multiplicado por 2, o sea 40 puntos.
                 <br>
                 Por otro lado, si apostás esa ficha de 20 a un número que no es el que salga en la ruleta, simplemente se le restará 20 puntos a tu puntaje total.
                 
@@ -87,13 +93,13 @@
                 
                 - Las apuestas se pueden hacer solo cuando la ruleta está quieta.
                 <br>
-                - La ruleta gira automáticamente durante 9 segundos cada 30 segundos.
+                - La ruleta gira automáticamente durante 7 segundos cada 40 segundos. 
                 <br>
                 - Las fichas se eligen haciendo click sobre ellas en la franja verde que está debajo del tablero.
                 <br>
                 - En los casilleros especiales (“2 a 1”, “Docenas”, “Par e Impar”, “1-18 - 19-36”, “Rojo y negro”) solo se pueden poner fichas cuyo valor sea 20 o 50.
                 <br>
-                - En caso de cualquier error/bug se puede reiniciar el tablero con ‘T’ o el juego completo con F5.
+                - En caso de cualquier error/bug se puede reiniciar el tablero con ‘F9’ o el juego completo con F5.
                 
                 <br> <br>
                 <b style="font-weight: 900; text-decoration: underline;">4. Casilleros especiales:</b>
@@ -240,16 +246,19 @@
                     </div>
                 </div>
             </div>
-            <h1 id="contador">30s</h1>
+            <h1 id="contador">...</h1>
         </div>
         <div class="inventario">
-            <div class="menuFichas">
-                <h4>Usando</h4><div id="fichaSeleccionada"></div>
-                <div class="ficha" id="ficha1" data-index="1" onclick="selectFicha(this)"></div>
-                <div class="ficha" id="ficha5" data-index="5" onclick="selectFicha(this)"></div>
-                <div class="ficha" id="ficha10" data-index="10" onclick="selectFicha(this)"></div>
-                <div class="ficha" id="ficha20" data-index="20" onclick="selectFicha(this)"></div>
-                <div class="ficha" id="ficha50" data-index="50" onclick="selectFicha(this)"></div>
+            <div class="menu">
+                <div class="menuFichas">
+                    <h4>Usando</h4><div id="fichaSeleccionada"></div>
+                    <div class="ficha" id="ficha1" data-index="1" onclick="selectFicha(this)"></div>
+                    <div class="ficha" id="ficha5" data-index="5" onclick="selectFicha(this)"></div>
+                    <div class="ficha" id="ficha10" data-index="10" onclick="selectFicha(this)"></div>
+                    <div class="ficha" id="ficha20" data-index="20" onclick="selectFicha(this)"></div>
+                    <div class="ficha" id="ficha50" data-index="50" onclick="selectFicha(this)"></div>
+                </div>
+                <a id="spinNow" onclick="spinNow()">GIRAR</a>
             </div>
             <h2 id="mensaje"></h2>
             <h2 id="subMensaje"></h2>
