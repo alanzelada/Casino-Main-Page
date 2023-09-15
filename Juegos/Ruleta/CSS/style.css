@@ -17,6 +17,10 @@ body{
   display: flex;
 }
 
+audio{
+  display: none;
+}
+
 .modal-open-2 {
     background: none;
     border: none;
@@ -177,6 +181,9 @@ body{
   border-radius: 50px;
   border: 10px solid rgb(75, 7, 7);*/
 }
+
+/* MENÚ INTERACTIVO */
+
 .inventario{
   width: 100%;
   display: block;
@@ -203,15 +210,20 @@ body{
   font-size: 1rem;
   font-weight: 400;
 }
+.inventario .menu{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .inventario .menuFichas{
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 60px;
+  height: 65px;
   background-color: #47b850;
-  border-radius: 70px;
-  width: 380px;
-  margin: auto;
+  border-radius: 15px;
+  
+  padding: 10px;
 }
 .menuFichas h4{
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -227,10 +239,10 @@ body{
   height: 40px;
   margin: 4px;
   cursor: pointer;
+
 }
 .ficha:hover{
-  width: 45px;
-  height: 45px;
+  transform: scale(1.1);
 }
 #fichaSeleccionada{
   margin-right: 14px;
@@ -257,6 +269,32 @@ body{
 .menuFichas #ficha50{ 
   background-image: url(../IMG/f50.png);
 }
+
+/* GIRAR YA */
+#spinNow{
+  background-color: #47b850;
+  outline: 3px solid white;
+  height: 65px;
+  width: 65px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 15px;
+  color: white;
+  font-weight: 600;
+  font-size: 0.9rem;
+  border-radius: 15px;
+  margin-left: 5px;
+  cursor: pointer;
+  display: none;
+  text-align: center;
+}
+#spinNow:hover{
+  background-color: #111111;
+  outline: none;
+}
+
+
 /* RULETA */
 #spin{
   display: none;
@@ -393,16 +431,19 @@ img{
 /* TIMER */
 #contador{
   background-color: rgb(71, 184, 80);
-  border-radius: 5px;
-  width: 60px;
-  height: 60px;
+  border-radius: 70px;
+  padding: 30px;
+  height: 50px;
+  width: 50px;
   font-size: 23px;
-  margin: 15px;
   display: flex;
   justify-content: center;
   align-items: center;
   color: white;
+  margin-left: 15px;
 }
+
+
 
 /* PREOCUPACION */
 #boxPreocupado{
@@ -704,20 +745,40 @@ input::-moz-focus-inner {
   position: fixed;
   width: 100%;
   color: white;
-  display: flex;
-  justify-content: end;
-  
- 
+  padding: 10px;
+  width: auto;
+  right: 5px;
 }
+.contienepuntos h4{
+  font-size: 1.2rem;
+  opacity: 0%;
+  display: none;
+  animation: 2s anim-pluspoint;
+}
+@keyframes anim-pluspoint{
+  0%{
+    transform: translateY(70%);
+    opacity: 0%;
+  }
+  50%{
+    opacity: 100%;
+  }
+  70%{
+    opacity: 100%;
+  }
+  100%{
+    transform: translateY(0%);
+    opacity: 0%;
+  }
+}
+
 .puntos{
-  position: fixed;
   color: white;
   display: flex;
   justify-content: end;
   background-color: rgb(71, 184, 80);
   border-radius: 6px;
   padding: 10px;
-  margin: 10px;
   border: 1px solid white;
    
 }
