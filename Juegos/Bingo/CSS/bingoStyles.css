@@ -540,8 +540,8 @@ input::-moz-focus-inner {
 .puntos {
   position: fixed;
   color: white;
-  left: 5px;
-  bottom: 5px;
+  top: 5px;
+  right: 5px;
   background-color: rgb(71, 184, 80);
   border-radius: 6px;
   padding: 10px;
