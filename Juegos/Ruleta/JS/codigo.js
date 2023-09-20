@@ -294,7 +294,7 @@ function markNumber(element)
                 mensaje('Solo podés apostar a un solo casillero de 2 A 1', 'white', 2);
               }
               else{
-                mensaje('Solo podés apostar con fichas de 20 o 50 en esta casilla (2 A 1)', 'white', 2);
+                mensaje('Solo podés apostar con fichas de 200 o 500 en esta casilla (2 A 1)', 'white', 2);
               }
               var imagen = element.querySelector('img');
               element.querySelector('h1').style.display = 'flex';
@@ -335,7 +335,7 @@ function markNumber(element)
                 mensaje('Solo podés apostar a un solo casillero de 2 A 1', 'white', 2);
               }
               else{
-                mensaje('Solo podés apostar con fichas de 20 o 50 en esta casilla (2 A 1)', 'white', 2);
+                mensaje('Solo podés apostar con fichas de 200 o 500 en esta casilla (2 A 1)', 'white', 2);
               }
               var imagen = element.querySelector('img');
               element.querySelector('h1').style.display = 'flex';
@@ -375,7 +375,7 @@ function markNumber(element)
                 mensaje('Solo podés apostar a un solo casillero de 2 A 1', 'white', 2);
               }
               else{
-                mensaje('Solo podés apostar con fichas de 20 o 50 en esta casilla (2 A 1)', 'white', 2);
+                mensaje('Solo podés apostar con fichas de 200 o 500 en esta casilla (2 A 1)', 'white', 2);
               }
               var imagen = element.querySelector('img');
               element.querySelector('h1').style.display = 'flex';
@@ -414,7 +414,7 @@ function markNumber(element)
               }
             }
             else{
-              mensaje('Solo podés apostar con fichas de 20 o 50 en esta casilla (1ra docena)', 'white', 2);
+              mensaje('Solo podés apostar con fichas de 200 o 500 en esta casilla (1ra docena)', 'white', 2);
               var imagen = element.querySelector('img');
               element.querySelector('h1').style.display = 'flex';
               selectedField[idx] = 0;
@@ -449,7 +449,7 @@ function markNumber(element)
               }
             }
             else{
-              mensaje('Solo podés apostar con fichas de 20 o 50 en esta casilla (2da docena)', 'white', 2);
+              mensaje('Solo podés apostar con fichas de 200 o 500 en esta casilla (2da docena)', 'white', 2);
               var imagen = element.querySelector('img');
               element.querySelector('h1').style.display = 'flex';
               selectedField[idx] = 0;
@@ -484,7 +484,7 @@ function markNumber(element)
               }
             }
             else{
-              mensaje('Solo podés apostar con fichas de 20 o 50 en esta casilla (3ra docena)', 'white', 2);
+              mensaje('Solo podés apostar con fichas de 200 o 500 en esta casilla (3ra docena)', 'white', 2);
               var imagen = element.querySelector('img');
               element.querySelector('h1').style.display = 'flex';
               selectedField[idx] = 0;
@@ -523,7 +523,7 @@ function markNumber(element)
                 mensaje('No podés apostar a la casilla 1-18 teniendo una ficha sobre la casilla 19-36', 'white', 2);
               }
               else{
-                mensaje('Solo podés apostar con fichas de 20 o 50 en esta casilla (1-18)', 'white', 2);
+                mensaje('Solo podés apostar con fichas de 200 o 500 en esta casilla (1-18)', 'white', 2);
               }
               var imagen = element.querySelector('img');
               element.querySelector('h1').style.display = 'flex';
@@ -563,7 +563,7 @@ function markNumber(element)
                 mensaje('No podés apostar a la casilla PAR teniendo una ficha sobre la casilla IMPAR', 'white', 2);
               }
               else{
-                mensaje('Solo podés apostar con fichas de 20 o 50 en esta casilla (PAR)', 'white', 2);
+                mensaje('Solo podés apostar con fichas de 200 o 500 en esta casilla (PAR)', 'white', 2);
               }
               var imagen = element.querySelector('img');
               element.querySelector('h1').style.display = 'flex';
@@ -605,7 +605,7 @@ function markNumber(element)
                 mensaje('No podés apostar a la casilla "ROJO" teniendo una ficha sobre la casilla "NEGRO"', 'white', 2);
               }
               else{
-                mensaje('Solo podés apostar con fichas de 20 o 50 en esta casilla (Color Rojo)', 'white', 2);
+                mensaje('Solo podés apostar con fichas de 200 o 500 en esta casilla (Color Rojo)', 'white', 2);
               }
               var imagen = element.querySelector('img');
               element.querySelector('h1').style.display = 'flex';
@@ -649,7 +649,7 @@ function markNumber(element)
                 mensaje('No podés apostar a la casilla "NEGRO" teniendo una ficha sobre la casilla "ROJO"', 'white', 2);
               }
               else{
-                mensaje('Solo podés apostar con fichas de 20 o 50 en esta casilla (Color Negro)', 'white', 2);
+                mensaje('Solo podés apostar con fichas de 200 o 500 en esta casilla (Color Negro)', 'white', 2);
               }
               var imagen = element.querySelector('img');
               element.querySelector('h1').style.display = 'flex';
@@ -689,7 +689,7 @@ function markNumber(element)
                 mensaje('No podés apostar a la casilla IMPAR teniendo una ficha sobre la casilla PAR', 'white', 2);
               }
               else{
-                mensaje('Solo podés apostar con fichas de 20 o 50 en esta casilla (IMPAR)', 'white', 2);
+                mensaje('Solo podés apostar con fichas de 200 o 500 en esta casilla (IMPAR)', 'white', 2);
               }
               var imagen = element.querySelector('img');
               element.querySelector('h1').style.display = 'flex';
@@ -729,7 +729,7 @@ function markNumber(element)
                 mensaje('No podés apostar a la casilla 19-36 teniendo una ficha sobre la casilla 1-18', 'white', 2);
               }
               else{
-                mensaje('Solo podés apostar con fichas de 20 o 50 en esta casilla (19-36)', 'white', 2);
+                mensaje('Solo podés apostar con fichas de 200 o 500 en esta casilla (19-36)', 'white', 2);
               }
               var imagen = element.querySelector('img');
               element.querySelector('h1').style.display = 'flex';
