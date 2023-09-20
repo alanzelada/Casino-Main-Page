@@ -271,7 +271,8 @@ h3 {
   margin-block: 1vw;
   width: 80px;
   height: 80px;
-  right: 0;
+  bottom: 5px;
+  left: 5px;
 }
 .modal-open:not(.modal-open--help) {
   top: 0;
@@ -454,10 +455,21 @@ input::-moz-focus-inner {
 
 .open-bet {
   position: absolute;
-  top: 0;
-  right: 0;
+  bottom: 5px;
+  right: 5px;
   margin-top: 1%;
   filter: hue-rotate(200deg);
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+.open-bet img{
+  height: 80px;
+  width: 80px;
+}
+.open-bet:hover img {
+  transition: transform 500ms ease;
+  transform: rotate(360deg);
 }
 
 #myBetModal .modal-content {
