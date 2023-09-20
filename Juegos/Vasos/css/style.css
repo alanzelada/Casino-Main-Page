@@ -129,12 +129,14 @@ input::-moz-focus-inner {
 }
 
 .modal-open {
-    position: relative;
-    display: block;
+    position: absolute;
     margin-inline: 2vw;
-    width: clamp(4rem,8vw,10rem);
     bottom: 5px;
     left: 5px;
+}
+.modal-open img{
+    width: 100px;
+    height: 100px;
 }
 
 .modal-open:hover img{
@@ -237,6 +239,10 @@ input::-moz-focus-inner {
     right: 5px;
     margin-top: 1%;
     filter: hue-rotate(200deg);
+  }
+  .open-bet img{
+    height: 100px;
+    width: 100px;
   }
   
   #myBetModal .modal-content{
