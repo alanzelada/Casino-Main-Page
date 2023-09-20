@@ -81,17 +81,20 @@ function createCups() {
           resultDiv.innerHTML += '<img src="resources/win-img.png" alt="" id="result-img">'
           playWinSound();
           updateUserPoints(betInput.value)
+          actualizarPuntos();
         } //if loose
         else {
           resultDiv.innerHTML += '<img src="resources/lose-img.png" alt="" id="result-img">'
           playLoseSound();
           updateUserPoints(-betInput.value)
+          actualizarPuntos();
         }
         // Reset the game after 3 seconds
         setTimeout(() => {
           deleteCups();
           createCups();
           resultDiv.innerHTML = ""
+          actualizarPuntos();
         }, 3000);
       }
     });
@@ -184,6 +187,7 @@ async function getUserPoints(username) {
     throw error;
   }
 }
+
 actualizarPuntos();
 async function actualizarPuntos() {
   try {
