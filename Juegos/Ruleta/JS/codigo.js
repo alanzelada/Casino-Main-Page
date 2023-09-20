@@ -901,7 +901,7 @@ function cuentaAtras(){
       contadorElement.textContent = '...';
       contadorElement.style.color = 'white';
 
-      spinNowElement.textContent = 'Girando ruleta';
+      spinNowElement.textContent = 'Girando ruleta...';
       spinNowElement.style.fontSize = '0.9rem';
       spinNowElement.style.color = 'gray';
       spinNowElement.style.backgroundColor = '#111111';
