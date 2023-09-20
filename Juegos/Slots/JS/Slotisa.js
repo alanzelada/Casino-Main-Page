@@ -106,6 +106,7 @@ function tirada() {
       mensaje.textContent = "¡Ganaste!";
       mensajeContainer.appendChild(mensaje);
       updateUserPoints(betInput.value)
+      actualizarPuntos();
 
       setTimeout(function () {
         mensaje.classList.remove("ganaste");
@@ -117,10 +118,14 @@ function tirada() {
       mensaje.textContent = "¡Intentalo de nuevo!";
       mensajeContainer.appendChild(mensaje);
       updateUserPoints(-betInput.value)
+      actualizarPuntos();
+
 
       setTimeout(function () {
         mensaje.classList.remove("perdiste");
         mensajeContainer.removeChild(mensaje);
+        actualizarPuntos();
+  
       }, 2500)
     }
   }, 5200);
