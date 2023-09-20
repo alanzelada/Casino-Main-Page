@@ -274,7 +274,7 @@ function markNumber(element)
                 //Testing
                 if(selectedField[n] <= 500){
                   puntosAcum = puntosAcum - selectedField[n];
-                  console.log("-"+selectedField[n]+" puntos de apuesta acumulados (Total "+puntosAcum+")");
+                  //console.log("-"+selectedField[n]+" puntos de apuesta acumulados (Total "+puntosAcum+")");
                 }
                 //
                 selectedField[n] = 0;
@@ -315,7 +315,7 @@ function markNumber(element)
                 //Testing
                 if(selectedField[n] <= 500){
                   puntosAcum = puntosAcum - selectedField[n];
-                  console.log("-"+selectedField[n]+" puntos de apuesta acumulados (Total "+puntosAcum+")");
+                  //console.log("-"+selectedField[n]+" puntos de apuesta acumulados (Total "+puntosAcum+")");
                 }
                 //
                 selectedField[n] = 0;
@@ -355,7 +355,7 @@ function markNumber(element)
                 //Testing
                 if(selectedField[n] <= 500){
                   puntosAcum = puntosAcum - selectedField[n];
-                  console.log("-"+selectedField[n]+" puntos de apuesta acumulados (Total "+puntosAcum+")");
+                  //console.log("-"+selectedField[n]+" puntos de apuesta acumulados (Total "+puntosAcum+")");
                 }
                 //
                 selectedField[n] = 0;
@@ -395,7 +395,7 @@ function markNumber(element)
                 //Testing
                 if(selectedField[n] <= 500){
                   puntosAcum = puntosAcum - selectedField[n];
-                  console.log("-"+selectedField[n]+" puntos de apuesta acumulados (Total "+puntosAcum+")");
+                  //console.log("-"+selectedField[n]+" puntos de apuesta acumulados (Total "+puntosAcum+")");
                 }
                 //
 
@@ -433,7 +433,7 @@ function markNumber(element)
                 //Testing
                 if(selectedField[n] <= 500){
                   puntosAcum = puntosAcum - selectedField[n];
-                  console.log("-"+selectedField[n]+" puntos de apuesta acumulados (Total "+puntosAcum+")");
+                  //console.log("-"+selectedField[n]+" puntos de apuesta acumulados (Total "+puntosAcum+")");
                 }
                 //
                 selectedField[n] = 0;
@@ -468,7 +468,7 @@ function markNumber(element)
                 //Testing
                 if(selectedField[n] <= 500){
                   puntosAcum = puntosAcum - selectedField[n];
-                  console.log("-"+selectedField[n]+" puntos de apuesta acumulados (Total "+puntosAcum+")");
+                  //console.log("-"+selectedField[n]+" puntos de apuesta acumulados (Total "+puntosAcum+")");
                 }
                 //
                 selectedField[n] = 0;
@@ -503,7 +503,7 @@ function markNumber(element)
                 //Testing
                 if(selectedField[n] <= 500){
                   puntosAcum = puntosAcum - selectedField[n];
-                  console.log("-"+selectedField[n]+" puntos de apuesta acumulados (Total "+puntosAcum+")");
+                  //console.log("-"+selectedField[n]+" puntos de apuesta acumulados (Total "+puntosAcum+")");
                 }
                 //
                 selectedField[n] = 0;
@@ -543,7 +543,7 @@ function markNumber(element)
                 //Testing
                 if(selectedField[n] <= 500){
                   puntosAcum = puntosAcum - selectedField[n];
-                  console.log("-"+selectedField[n]+" puntos de apuesta acumulados (Total "+puntosAcum+")");
+                  //console.log("-"+selectedField[n]+" puntos de apuesta acumulados (Total "+puntosAcum+")");
                 }
                 //
                 selectedField[n] = 0;
@@ -585,7 +585,7 @@ function markNumber(element)
                 //Testing
                 if(selectedField[fieldIndex] <= 500){
                   puntosAcum = puntosAcum - selectedField[fieldIndex];
-                  console.log("-"+selectedField[fieldIndex]+" puntos de apuesta acumulados (Total "+puntosAcum+")");
+                  //console.log("-"+selectedField[fieldIndex]+" puntos de apuesta acumulados (Total "+puntosAcum+")");
                 }
                 //
                 selectedField[fieldIndex] = 0;
@@ -628,7 +628,7 @@ function markNumber(element)
                 //Testing
                 if(selectedField[fieldIndex] <= 500){
                   puntosAcum = puntosAcum - selectedField[fieldIndex];
-                  console.log("-"+selectedField[fieldIndex]+" puntos de apuesta acumulados (Total "+puntosAcum+")");
+                  //console.log("-"+selectedField[fieldIndex]+" puntos de apuesta acumulados (Total "+puntosAcum+")");
                 }
                 //
 
@@ -669,7 +669,7 @@ function markNumber(element)
                 //Testing
                 if(selectedField[n] <= 500){
                   puntosAcum = puntosAcum - selectedField[n];
-                  console.log("-"+selectedField[n]+" puntos de apuesta acumulados (Total "+puntosAcum+")");
+                  //console.log("-"+selectedField[n]+" puntos de apuesta acumulados (Total "+puntosAcum+")");
                 }
                 //
                 selectedField[n] = 0;
@@ -709,7 +709,7 @@ function markNumber(element)
                 //Testing
                 if(selectedField[n] <= 500){
                   puntosAcum = puntosAcum - selectedField[n];
-                  console.log("-"+selectedField[n]+" puntos de apuesta acumulados (Total "+puntosAcum+")");
+                  //console.log("-"+selectedField[n]+" puntos de apuesta acumulados (Total "+puntosAcum+")");
                 }
                 //
                 selectedField[n] = 0;
@@ -742,14 +742,14 @@ function markNumber(element)
         }
         if(fieldState[idx] === true){
             puntosAcum = puntosAcum + selectedFicha;
-            console.log("+"+selectedFicha+" puntos de apuesta acumulados (Total "+puntosAcum+")");
+            //console.log("+"+selectedFicha+" puntos de apuesta acumulados (Total "+puntosAcum+")");
         }
       }
       else if(fieldState[idx] === true){
         var imagen = element.querySelector('img');
         element.querySelector('h1').style.display = 'flex';
         puntosAcum = puntosAcum - selectedField[idx];
-        console.log("-"+selectedField[idx]+" puntos de apuesta acumulados (Total "+puntosAcum+")");
+        //console.log("-"+selectedField[idx]+" puntos de apuesta acumulados (Total "+puntosAcum+")");
 
         selectedField[idx] = 0;
         fieldState[idx] = false;
