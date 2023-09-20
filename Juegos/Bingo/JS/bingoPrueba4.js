@@ -167,6 +167,7 @@ let numerosSalientes = [];
                     const mensaje = document.createElement("p");
                     mensaje.classList.add("perdiste");
                     mensaje.textContent="!GANO EL BOT!";
+                    actualizarPuntos();
                     mensajeContainer.appendChild(mensaje);
                     bingoCantado = true;
                         updateUserPoints(-document.querySelector(".bet-input").value)
