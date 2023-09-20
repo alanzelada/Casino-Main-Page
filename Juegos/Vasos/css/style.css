@@ -133,6 +133,8 @@ input::-moz-focus-inner {
     display: block;
     margin-inline: 2vw;
     width: clamp(4rem,8vw,10rem);
+    bottom: 5px;
+    left: 5px;
 }
 
 .modal-open:hover img{
@@ -231,8 +233,8 @@ input::-moz-focus-inner {
 
 .open-bet{
     position: absolute;
-    top:0;
-    right: 0;
+    bottom:5px;
+    right: 5px;
     margin-top: 1%;
     filter: hue-rotate(200deg);
   }
@@ -321,8 +323,8 @@ input::-moz-focus-inner {
   .puntos{
     position: fixed;
     color: white;
-    left: 5px;
-    bottom: 5px;
+    right: 5px;
+    top: 5px;
     background-color: rgb(71, 184, 80);
     border-radius: 6px;
     padding: 10px;
