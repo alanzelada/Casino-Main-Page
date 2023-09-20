@@ -53,11 +53,14 @@ function tirarDados() {
   if (total == usDado) {
     updateUserPoints(betInput.value)
     resultElement.textContent = '¡Has ganado!';
+    actualizarPuntos();
   }
   else {
     updateUserPoints(-betInput.value)
     resultElement.textContent = 'Has perdido.';
+    actualizarPuntos();
   }
+  actualizarPuntos();
 
 }
 
