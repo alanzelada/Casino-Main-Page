@@ -18,6 +18,24 @@
 
 <body>
 
+    <div class="buuton-back">
+        <a href="../../index.html" class="modal-open-2">
+            <div><img src="./Images/Coin-back.png" alt="" draggable="false"></div>
+        </a>
+    </div>
+
+    <div class="reglas">
+        <button onclick="openModal()" class="modal-open modal-open--help">
+            <div><img src="./Images/Coin.png" alt="coin-img" draggable="false"></div>
+        </button>
+    </div>
+
+    <button onclick="openBet()" class="open-bet">
+        <div>
+            <img src="Images/Coin-bet.png" alt="coin-img" draggable="false">
+        </div>
+    </button>
+
     <div class="contienepuntos">
         <div class="puntos">
             <h3 id="ptstotales__text">Puntos: CARGANDO...</h3>
@@ -62,23 +80,6 @@
             <script src="./JS/botones.js"></script>
         </div>
 
-        <div class="buuton-back">
-            <a href="../../index.html" class="modal-open-2">
-                <div><img src="./Images/Coin-back.png" alt="" draggable="false"></div>
-            </a>
-        </div>
-
-        <div class="reglas">
-            <button onclick="openModal()" class="modal-open modal-open--help">
-                <div><img src="./Images/Coin.png" alt="coin-img" draggable="false"></div>
-            </button>
-        </div>
-
-        <button onclick="openBet()" class="open-bet modal-open">
-            <div>
-                <img src="Images/Coin-bet.png" alt="coin-img" draggable="false">
-            </div>
-        </button>
         <div id="myBetModal" class="modal">
             <img src="Images/Background-Instrucciones.png" alt="modal-background-img">
             <span onclick="closeBet()" class="close">X</span>
@@ -112,3 +113,4 @@
 </body>
 
 </html>
+
