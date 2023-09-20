@@ -103,12 +103,14 @@ function scratchPaint(event) {
             document.getElementById("my-canvas").style.display = "block";
             playWinSound();
             updateUserPoints(betInput.value)
+            actualizarPuntos();
         }
         else {
             resultDiv.innerHTML += '<img src="resources/lose-img.png" alt="" id="result-img">'
             document.getElementById("my-canvas").style.display = "none";
             playLoseSound();
             updateUserPoints(-betInput.value)
+            actualizarPuntos();
         }
         setTimeout(() => {
             resetGame()
