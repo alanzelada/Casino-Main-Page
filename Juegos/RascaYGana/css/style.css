@@ -156,12 +156,14 @@ body {
 }
 
 .modal-open {
-  align-self: flex-end;
   position: relative;
   display: block;
+  left: 0;
+  bottom: 0;
   margin-inline: 2vw;
   width: clamp(4rem,8vw,10rem);
 }
+
 
 .modal-open:hover img{
   transition: transform 500ms ease;
@@ -262,12 +264,21 @@ body {
 
 .open-bet{
   position: absolute;
-  top:0;
-  right: 0;
+  bottom:5px;
+  right: 5px;
   margin-top: 1%;
   filter: hue-rotate(200deg);
+
+}
+.open-bet img{
+  width: 80px;
+  height: 80px;
 }
 
+.open-bet img:hover{
+  transition: transform 500ms ease;
+  transform: rotate(360deg);
+}
 #myBetModal .modal-content{
   max-width: min(45vh, 60vw);
   height: 100%;
@@ -321,8 +332,8 @@ body {
 .puntos{
   position: fixed;
   color: white;
-  bottom: 5px;
-  left: 5px;
+  top: 5px;
+  right: 5px;
   background-color: rgb(71, 184, 80);
   border-radius: 6px;
   padding: 10px;
