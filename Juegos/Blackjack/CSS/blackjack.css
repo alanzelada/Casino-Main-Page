@@ -305,11 +305,10 @@ a img:hover{
 }
 .open-bet{
     position: absolute;
-    top:0;
+    bottom:0;
     right: 0;
-    margin-top: 1%;
     filter: hue-rotate(200deg);
-    height: 10%;
+    height: 80px;
   }
   
   #myBetModal .modal-content{
@@ -410,7 +409,7 @@ a img:hover{
     position: fixed;
     color: white;
     right: 5px;
-    bottom: 5px;
+    top: 5px;
     background-color: rgb(71, 184, 80);
     border-radius: 6px;
     padding: 10px;
