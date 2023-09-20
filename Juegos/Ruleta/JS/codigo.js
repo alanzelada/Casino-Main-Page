@@ -179,7 +179,7 @@ function actualizarHistorial(){
 function selectFicha(element) {
   var ind = element.getAttribute('data-index');
   var divFichaSelec = document.getElementById('fichaSeleccionada');
-  divFichaSelec.style.backgroundImage = 'url(IMG/f' + ind + '.png)';
+  divFichaSelec.style.backgroundImage = 'url(IMG/ficha' + ind + '.png)';
   selectedFicha = parseInt(ind);
   console.log('Ficha ' + ind + ' seleccionada');
 
@@ -190,7 +190,7 @@ function selectFicha(element) {
 
 function limpiarTablero(){
   for(var l = 0; l <= 48; l++){
-      if(selectedField[l] > 0 && selectedField[l] <= 50)
+      if(selectedField[l] > 0 && selectedField[l] <= 500)
       {
         var imagen = document.getElementById(l).querySelector('img');
         document.getElementById(l).querySelector('h1').style.display = 'flex';
@@ -200,7 +200,7 @@ function limpiarTablero(){
           imagen.remove();
         }
       }
-      if(selectedField[l] > 100){
+      if(selectedField[l] > 1000){
         selectedField[l] = 0;
       }
       puntosAcum = 0;
@@ -251,7 +251,7 @@ function markNumber(element)
       if(selectedField[idx] === 0 && puntosAcum + selectedFicha <= pts){
         var imagen = document.createElement('img');
         
-        imagen.src = 'IMG/f'+selectedFicha+'.png';
+        imagen.src = 'IMG/ficha'+selectedFicha+'.png';
         
         imagen.style.width = '28px';
         imagen.style.height = '28px';
@@ -265,11 +265,28 @@ function markNumber(element)
         element.appendChild(imagen);
         switch(idx){
           case 37:{ //2 A 1
-            if(selectedField[38] === 0 && selectedField[39] === 0 && selectedFicha >= 20){
+            if(selectedField[38] === 0 && selectedField[39] === 0 && selectedFicha >= 200){
               for(let n = 3; n <= 36; n = n+3){
-                selectedField[n] = 137;
+
+
+                var imagen = document.getElementById(n).querySelector('img');
+                document.getElementById(n).querySelector('h1').style.display = 'flex';
+                //Testing
+                if(selectedField[n] <= 500){
+                  puntosAcum = puntosAcum - selectedField[n];
+                  console.log("-"+selectedField[n]+" puntos de apuesta acumulados (Total "+puntosAcum+")");
+                }
+                //
+                selectedField[n] = 0;
+                fieldState[n] = false;
+                if(imagen){
+                  imagen.remove();
+                }
+
+
+                selectedField[n] = 1037;
                 //fieldState[n] = true;
-                document.getElementById(n).style.opacity = '60%';
+                document.getElementById(n).style.opacity = '40%';
               }
             }
             else{
@@ -289,11 +306,28 @@ function markNumber(element)
             break;
           }
           case 38:{ //2 A 1
-            if(selectedField[37] === 0 && selectedField[39] === 0 && selectedFicha >= 20){
+            if(selectedField[37] === 0 && selectedField[39] === 0 && selectedFicha >= 200){
               for(let n = 2; n <= 35; n = n+3){
-                selectedField[n] = 138;
+
+                
+                var imagen = document.getElementById(n).querySelector('img');
+                document.getElementById(n).querySelector('h1').style.display = 'flex';
+                //Testing
+                if(selectedField[n] <= 500){
+                  puntosAcum = puntosAcum - selectedField[n];
+                  console.log("-"+selectedField[n]+" puntos de apuesta acumulados (Total "+puntosAcum+")");
+                }
+                //
+                selectedField[n] = 0;
+                fieldState[n] = false;
+                if(imagen){
+                  imagen.remove();
+                }
+
+
+                selectedField[n] = 1038;
                 //fieldState[n] = true;
-                document.getElementById(n).style.opacity = '60%';
+                document.getElementById(n).style.opacity = '40%';
               }
             }
             else{
@@ -312,11 +346,28 @@ function markNumber(element)
             break;
           }
           case 39:{ //2 A 1
-            if(selectedField[37] === 0 && selectedField[38] === 0 && selectedFicha >= 20){
+            if(selectedField[37] === 0 && selectedField[38] === 0 && selectedFicha >= 200){
               for(let n = 1; n <= 34; n = n+3){
-                selectedField[n] = 139;
+
+                
+                var imagen = document.getElementById(n).querySelector('img');
+                document.getElementById(n).querySelector('h1').style.display = 'flex';
+                //Testing
+                if(selectedField[n] <= 500){
+                  puntosAcum = puntosAcum - selectedField[n];
+                  console.log("-"+selectedField[n]+" puntos de apuesta acumulados (Total "+puntosAcum+")");
+                }
+                //
+                selectedField[n] = 0;
+                fieldState[n] = false;
+                if(imagen){
+                  imagen.remove();
+                }
+
+
+                selectedField[n] = 1039;
                 //fieldState[n] = true;
-                document.getElementById(n).style.opacity = '60%';
+                document.getElementById(n).style.opacity = '40%';
               }
             }
             else{
@@ -335,11 +386,31 @@ function markNumber(element)
             break;
           }
           case 40:{ //1RA DOCENA
-            if(selectedFicha >= 20){
+            if(selectedFicha >= 200){
               for(let n = 1; n <= 12; n++){
-                selectedField[n] = 140;
+
+                
+                var imagen = document.getElementById(n).querySelector('img');
+                document.getElementById(n).querySelector('h1').style.display = 'flex';
+                //Testing
+                if(selectedField[n] <= 500){
+                  puntosAcum = puntosAcum - selectedField[n];
+                  console.log("-"+selectedField[n]+" puntos de apuesta acumulados (Total "+puntosAcum+")");
+                }
+                //
+
+                selectedField[n] = 0;
+                fieldState[n] = false;
+
+                if(imagen){
+                  imagen.remove();
+                }
+
+
+                selectedField[n] = 1040;
                 //fieldState[n] = true;
-                document.getElementById(n).style.opacity = '60%';
+                document.getElementById(n).style.opacity = '40%';
+                
               }
             }
             else{
@@ -353,11 +424,28 @@ function markNumber(element)
             break;
           }
           case 41:{ //2DA DOCENA
-            if(selectedFicha >= 20){
+            if(selectedFicha >= 200){
               for(let n = 13; n <= 24; n++){
-                selectedField[n] = 141;
+
+                
+                var imagen = document.getElementById(n).querySelector('img');
+                document.getElementById(n).querySelector('h1').style.display = 'flex';
+                //Testing
+                if(selectedField[n] <= 500){
+                  puntosAcum = puntosAcum - selectedField[n];
+                  console.log("-"+selectedField[n]+" puntos de apuesta acumulados (Total "+puntosAcum+")");
+                }
+                //
+                selectedField[n] = 0;
+                fieldState[n] = false;
+                if(imagen){
+                  imagen.remove();
+                }
+
+
+                selectedField[n] = 1041;
                 //fieldState[n] = true;
-                document.getElementById(n).style.opacity = '60%';
+                document.getElementById(n).style.opacity = '40%';
               }
             }
             else{
@@ -371,11 +459,28 @@ function markNumber(element)
             break;
           }
           case 42:{ //3RA DOCENA
-            if(selectedFicha >= 20){
+            if(selectedFicha >= 200){
               for(let n = 25; n <= 36; n++){
-                selectedField[n] = 142;
+
+                
+                var imagen = document.getElementById(n).querySelector('img');
+                document.getElementById(n).querySelector('h1').style.display = 'flex';
+                //Testing
+                if(selectedField[n] <= 500){
+                  puntosAcum = puntosAcum - selectedField[n];
+                  console.log("-"+selectedField[n]+" puntos de apuesta acumulados (Total "+puntosAcum+")");
+                }
+                //
+                selectedField[n] = 0;
+                fieldState[n] = false;
+                if(imagen){
+                  imagen.remove();
+                }
+
+
+                selectedField[n] = 1042;
                 //fieldState[n] = true;
-                document.getElementById(n).style.opacity = '60%';
+                document.getElementById(n).style.opacity = '40%';
               }
             }
             else{
@@ -389,11 +494,28 @@ function markNumber(element)
             break;
           }
           case 43:{ // 1 A 18
-            if(selectedFicha >= 20 && selectedField[48] === 0){
+            if(selectedFicha >= 200 && selectedField[48] === 0){
               for(let n = 1; n <= 18; n++){
-                selectedField[n] = 143;
+
+                
+                var imagen = document.getElementById(n).querySelector('img');
+                document.getElementById(n).querySelector('h1').style.display = 'flex';
+                //Testing
+                if(selectedField[n] <= 500){
+                  puntosAcum = puntosAcum - selectedField[n];
+                  console.log("-"+selectedField[n]+" puntos de apuesta acumulados (Total "+puntosAcum+")");
+                }
+                //
+                selectedField[n] = 0;
+                fieldState[n] = false;
+                if(imagen){
+                  imagen.remove();
+                }
+
+
+                selectedField[n] = 1043;
                 //fieldState[n] = true;
-                document.getElementById(n).style.opacity = '60%';
+                document.getElementById(n).style.opacity = '40%';
               }
             }
             else{
@@ -412,11 +534,28 @@ function markNumber(element)
             break;
           }
           case 44:{ // PAR
-            if(selectedFicha >= 20 && selectedField[47] === 0){
+            if(selectedFicha >= 200 && selectedField[47] === 0){
               for(let n = 2; n <= 36; n = n+2){
-                selectedField[n] = 144;
+
+                
+                var imagen = document.getElementById(n).querySelector('img');
+                document.getElementById(n).querySelector('h1').style.display = 'flex';
+                //Testing
+                if(selectedField[n] <= 500){
+                  puntosAcum = puntosAcum - selectedField[n];
+                  console.log("-"+selectedField[n]+" puntos de apuesta acumulados (Total "+puntosAcum+")");
+                }
+                //
+                selectedField[n] = 0;
+                fieldState[n] = false;
+                if(imagen){
+                  imagen.remove();
+                }
+
+
+                selectedField[n] = 1044;
                 //fieldState[n] = true;
-                document.getElementById(n).style.opacity = '60%';
+                document.getElementById(n).style.opacity = '40%';
               }
             }
             else{
@@ -435,14 +574,30 @@ function markNumber(element)
             break;
           }
           case 45:{ // ROJO
-            if(selectedFicha >= 20 && selectedField[46] === 0){
+            if(selectedFicha >= 200 && selectedField[46] === 0){
               const rojos = [1, 5, 7, 9, 12, 14, 16, 18, 19, 21, 23, 25, 27, 30, 32, 34, 36];
 
               for (let i = 0; i < rojos.length; i++) {
                 const fieldIndex = rojos[i];
-                selectedField[fieldIndex] = 145;
+                
+                var imagen = document.getElementById(fieldIndex).querySelector('img');
+                document.getElementById(fieldIndex).querySelector('h1').style.display = 'flex';
+                //Testing
+                if(selectedField[fieldIndex] <= 500){
+                  puntosAcum = puntosAcum - selectedField[fieldIndex];
+                  console.log("-"+selectedField[fieldIndex]+" puntos de apuesta acumulados (Total "+puntosAcum+")");
+                }
+                //
+                selectedField[fieldIndex] = 0;
+                fieldState[fieldIndex] = false;
+                if(imagen){
+                  imagen.remove();
+                }
+
+
+                selectedField[fieldIndex] = 1045;
                 //fieldState[fieldIndex] = true;
-                document.getElementById(fieldIndex).style.opacity = '60%';
+                document.getElementById(fieldIndex).style.opacity = '40%';
               }
             }
             else{
@@ -461,14 +616,32 @@ function markNumber(element)
             break;
           }
           case 46:{ // NEGRO
-            if (selectedFicha >= 20 && selectedField[45] === 0) {
+            if (selectedFicha >= 200 && selectedField[45] === 0) {
               const negros = [2, 3, 4, 6, 8, 10, 11, 13, 15, 17, 20, 22, 24, 26, 28, 29, 31, 33, 35];
 
               for (let i = 0; i < negros.length; i++) {
                 const fieldIndex = negros[i];
-                selectedField[fieldIndex] = 146;
+
+                
+                var imagen = document.getElementById(fieldIndex).querySelector('img');
+                document.getElementById(fieldIndex).querySelector('h1').style.display = 'flex';
+                //Testing
+                if(selectedField[fieldIndex] <= 500){
+                  puntosAcum = puntosAcum - selectedField[fieldIndex];
+                  console.log("-"+selectedField[fieldIndex]+" puntos de apuesta acumulados (Total "+puntosAcum+")");
+                }
+                //
+
+                selectedField[fieldIndex] = 0;
+                fieldState[fieldIndex] = false;
+                if(imagen){
+                  imagen.remove();
+                }
+
+
+                selectedField[fieldIndex] = 1046;
                 //fieldState[fieldIndex] = true;
-                document.getElementById(fieldIndex).style.opacity = '60%';
+                document.getElementById(fieldIndex).style.opacity = '40%';
               }
             }
             else{
@@ -487,11 +660,28 @@ function markNumber(element)
             break;
           }
           case 47:{ // IMPAR
-            if(selectedFicha >= 20 && selectedField[44] === 0){
+            if(selectedFicha >= 200 && selectedField[44] === 0){
               for(let n = 1; n <= 35; n = n+2){
-                selectedField[n] = 147;
+
+                
+                var imagen = document.getElementById(n).querySelector('img');
+                document.getElementById(n).querySelector('h1').style.display = 'flex';
+                //Testing
+                if(selectedField[n] <= 500){
+                  puntosAcum = puntosAcum - selectedField[n];
+                  console.log("-"+selectedField[n]+" puntos de apuesta acumulados (Total "+puntosAcum+")");
+                }
+                //
+                selectedField[n] = 0;
+                fieldState[n] = false;
+                if(imagen){
+                  imagen.remove();
+                }
+
+
+                selectedField[n] = 1047;
                 //fieldState[n] = true;
-                document.getElementById(n).style.opacity = '60%';
+                document.getElementById(n).style.opacity = '40%';
               }
             }
             else{
@@ -510,11 +700,28 @@ function markNumber(element)
             break;
           }
           case 48:{ //19-36
-            if(selectedFicha >= 20 && selectedField[43] === 0){
+            if(selectedFicha >= 200 && selectedField[43] === 0){
               for(let n = 19; n <= 36; n++){
-                selectedField[n] = 148;
+
+                
+                var imagen = document.getElementById(n).querySelector('img');
+                document.getElementById(n).querySelector('h1').style.display = 'flex';
+                //Testing
+                if(selectedField[n] <= 500){
+                  puntosAcum = puntosAcum - selectedField[n];
+                  console.log("-"+selectedField[n]+" puntos de apuesta acumulados (Total "+puntosAcum+")");
+                }
+                //
+                selectedField[n] = 0;
+                fieldState[n] = false;
+                if(imagen){
+                  imagen.remove();
+                }
+
+
+                selectedField[n] = 1048;
                 //fieldState[n] = true;
-                document.getElementById(n).style.opacity = '60%';
+                document.getElementById(n).style.opacity = '40%';
               }
             }
             else{
@@ -667,7 +874,7 @@ function markNumber(element)
 function cuentaAtras(){
     var contadorElement = document.getElementById('contador');
     var spinNowElement = document.getElementById('spinNow');
-    var contador = 40;
+    var contador = 60;
 
     spinning = false;
 
@@ -694,7 +901,7 @@ function cuentaAtras(){
       contadorElement.textContent = '...';
       contadorElement.style.color = 'white';
 
-      spinNowElement.textContent = 'Girando ...';
+      spinNowElement.textContent = 'Girando ruleta';
       spinNowElement.style.fontSize = '0.9rem';
       spinNowElement.style.color = 'gray';
       spinNowElement.style.backgroundColor = '#111111';
@@ -718,9 +925,9 @@ function checkWin(numGanador){
     /* SUMAR PUNTOS */
     if (num === numGanador && selectedField[numGanador] >= 1) 
     {
-      if (selectedField[numGanador] > 100)
+      if (selectedField[numGanador] > 1000)
       {
-        let pos = parseInt(selectedField[numGanador]) - 100;
+        let pos = parseInt(selectedField[numGanador]) - 1000;
         suma = parseInt(selectedField[pos]);
 
         var imagen = document.getElementById(pos).querySelector('img');
@@ -744,12 +951,12 @@ function checkWin(numGanador){
     {
       if (selectedField[num] != 0) 
       {
-        if (selectedField[num] < 100) 
+        if (selectedField[num] < 1000) 
         {
           res = res + parseInt(selectedField[num]);
         }
-        else if(selectedField[num] > 100){
-          /*var pos = parseInt(selectedField[num]) - 100;
+        else if(selectedField[num] > 1000){
+          /*var pos = parseInt(selectedField[num]) - 1000;
           if(fieldState[pos] === true){
             console.log(selectedField[pos])
             res = res + parseInt(selectedField[pos]);
@@ -763,73 +970,73 @@ function checkWin(numGanador){
     if(num != numGanador){
       switch(num){
         case 37:{
-          if(selectedField[3] === 137){
+          if(selectedField[3] === 1037){
             res = res + parseInt(selectedField[37]);
           }
           break;
         }
         case 38:{
-          if(selectedField[2] === 138){
+          if(selectedField[2] === 1038){
             res = res + parseInt(selectedField[38]);
           }
           break;
         }
         case 39:{
-          if(selectedField[1] === 139){
+          if(selectedField[1] === 1039){
             res = res + parseInt(selectedField[39]);
           }
           break;
         }
         case 40:{
-          if(selectedField[1] === 140){
+          if(selectedField[1] === 1040){
             res = res + parseInt(selectedField[40]);
           }
           break;
         }
         case 41:{
-          if(selectedField[13] === 141){
+          if(selectedField[13] === 1041){
             res = res + parseInt(selectedField[41]);
           }
           break;
         }
         case 42:{
-          if(selectedField[25] === 142){
+          if(selectedField[25] === 1042){
             res = res + parseInt(selectedField[42]);
           }
           break;
         }
         case 43:{
-          if(selectedField[18] === 143){
+          if(selectedField[18] === 1043){
             res = res + parseInt(selectedField[43]);
           }
           break;
         }
         case 44:{
-          if(selectedField[2] === 144){
+          if(selectedField[2] === 1044){
             res = res + parseInt(selectedField[44]);
           }
           break;
         }
         case 45:{
-          if(selectedField[9] === 145){
+          if(selectedField[9] === 1045){
             res = res + parseInt(selectedField[45]);
           }
           break;
         }
         case 46:{
-          if(selectedField[1] === 146){
+          if(selectedField[1] === 1046){
             res = res + parseInt(selectedField[46]);
           }
           break;
         }
         case 47:{
-          if(selectedField[3] === 147){
+          if(selectedField[3] === 1047){
             res = res + parseInt(selectedField[47]);
           }
           break;
         }
         case 48:{
-          if(selectedField[36] === 148){
+          if(selectedField[36] === 1048){
             res = res + parseInt(selectedField[48]);
           }
           break;
