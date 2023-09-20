@@ -39,12 +39,6 @@ header{
     font-size:larger;
     text-align: center;
 }
-.modal-open {
-  position: relative;
-  display: block;
-  margin-inline: 2vw;
-  width: clamp(4rem,8vw,10rem);
-}
 .modal-open:hover img{
   transition: transform 500ms ease;
   transform: rotate(360deg);
@@ -142,13 +136,6 @@ input::-moz-focus-inner {
   width: 15%;
 }
 
-.open-bet{
-  position: absolute;
-  top:0;
-  right: 0;
-  margin-top: 1%;
-  filter: hue-rotate(200deg);
-}
 
 #myBetModal .modal-content{
   max-width: min(45vh, 60vw);
@@ -223,6 +210,30 @@ input::-moz-focus-inner {
 }
 
 
+.modal-open {
+  position: fixed;
+  height: 80px;
+  width: 80px;
+  bottom: 5px;
+  left: 5px;
+}
+.open-bet{
+  position: absolute;
+  filter: hue-rotate(200deg);
+  bottom: 5px;
+  right: 5px;
+  height: 80px;
+  width: 80px;
+}
+.open-bet:hover{
+  
+  transition: transform 500ms ease;
+  transform: rotate(360deg);
+}
+
+.open-bet img{
+  height: 80px;
+}
 /* Contenedor de puntos totales */
 
 .contienepuntos{ 
@@ -237,7 +248,7 @@ input::-moz-focus-inner {
 .puntos{
   position: fixed;
   color: white;
-  bottom: 5px;
+  top: 5px;
   right: 5px;
   background-color: rgb(71, 184, 80);
   border-radius: 6px;
