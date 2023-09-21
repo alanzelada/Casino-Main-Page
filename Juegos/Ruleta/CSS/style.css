@@ -7,7 +7,7 @@
   user-select: none;
   border: none;
   outline: 0;
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
   font-weight: 400;
 }
 body{
@@ -320,11 +320,8 @@ canvas{
 
 
 /* TABLERO */
-h1{
-  
-  font-size: 18px;
-  
-   
+.casino h1{
+  font-size: 1.05rem; 
 }
 .tablero{
   background-color: #47b850;
@@ -380,22 +377,8 @@ h1{
   align-items: center;
   justify-content: center;
   outline: 1px solid white;
-   
 }
 
-img{
-  animation-name: anim-ficha;
-  animation-duration: 0.2s;
-}
-
-@keyframes anim-ficha{
-  0%{
-    opacity: 0%;
-  }
-  100%{
-    opacity: 100%;
-  }
-}
 #cuartaFila,
 #quintaFila{
   height: 17%;
@@ -506,61 +489,6 @@ img{
   cursor: pointer;
 }
 
-/* SALIR DEL JUEGO */
-.cuentaInfo{
-  position: absolute;
-  transform: scale(0.9);
-  bottom: 4px; 
-  left: 4px;
-  width: 225px;
-  opacity: 40%;
-  transition: 0.4s;
-}
-.cuentaInfo:hover{
-  opacity: 100%;
-  transform: scale(1.0);
-  transition: 0.4s;
-}
-.cuentaInfo section{
-  background-color: rgb(71, 184, 80);
-  border-radius: 15px;
-  padding: 10px;
-  border: 2px solid white;
-  display: flex;
-  flex-direction: column;
-}
-.cuentaInfo section div{
-  display: flex;
-  align-items: center;
-  margin-bottom: 10px;
-}
-.cuentaInfo section div img{
-  width: 25px;
-  height: 25px;
-  margin-right: 5px;
-}
-.cuentaInfo section div h2{
-  font-size: 1.1rem;
-  color: white;
-}
-.cuentaInfo section a{
-  background-color: rgb(255, 255, 255);
-  width: 100%;
-  height: 40px;
-  border-radius: 15px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: black;
-  font-weight: 500;
-  font-size: 1.2rem;
-  text-align: center;
-}
-
-.cuentaInfo section a:hover{
-  background-color: #181818;
-  color: white;
-}
 /* HISTORIAL */
 .historial{
   position: absolute;
