@@ -434,6 +434,39 @@ canvas{
   margin-left: 15px;
 }
 
+@media (max-width: 900px){
+  .casino{
+    flex-direction: column;
+  }
+  
+  #contador{
+    margin: 20px;
+    font-size: 2rem;
+    padding: 20px;
+  }
+  .inventario{
+    padding: 0;
+    flex-direction: column;
+  }
+  .inventario .menu{
+    flex-direction: column;
+  }
+  .inventario .menu #spinNow{
+    margin: 10px;
+    width: 100%;
+    display: flex;
+  }
+  .inventario .menuFichas{
+    width: 100%;
+    line-height: 20px;
+  }
+  .inventario h2{
+    line-height: 20px;
+  }
+  .tablero{
+    width: 100%;
+  }
+}
 
 
 /* PREOCUPACION */
