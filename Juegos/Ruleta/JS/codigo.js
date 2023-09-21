@@ -34,7 +34,7 @@ var ctx;
 var newestResults = new Array(5);
 newestResults = ['-', '-', '-', '-', '-'];
 var selectedField = new Array(48);
-var selectedFicha = 10;
+var selectedFicha = 100;
 var fieldState = new Array(48);
 var puntosAcum = 0;
 
@@ -178,8 +178,8 @@ function actualizarHistorial(){
 
 function selectFicha(element) {
   var ind = element.getAttribute('data-index');
-  var divFichaSelec = document.getElementById('fichaSeleccionada');
-  divFichaSelec.style.backgroundImage = 'url(IMG/ficha' + ind + '.png)';
+  var divFichaSelec = document.querySelector('#fichaSeleccionada img');
+  divFichaSelec.src = 'IMG/ficha' + ind + '.png';
   selectedFicha = parseInt(ind);
   console.log('Ficha ' + ind + ' seleccionada');
 
