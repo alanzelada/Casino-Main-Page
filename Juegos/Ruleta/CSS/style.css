@@ -194,13 +194,13 @@ audio{
   padding: 7px;
   color: rgb(248, 248, 248);
   text-align: center;
-  font-size: 20px;
+  font-size: 1.45rem;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   display: flex;
   text-shadow: 0 0 6px black;
   justify-content: center;
    
-  line-height: 0;
+  line-height: 5px;
   margin-top: 10px;
   font-weight: 700;
 }
@@ -208,7 +208,7 @@ audio{
   margin-top: 12px;
 }
 #subMensaje{
-  font-size: 1rem;
+  font-size: 1.15rem;
   font-weight: 400;
 }
 .inventario .menu{
@@ -225,12 +225,27 @@ audio{
   border-radius: 15px;
   
   padding: 10px;
+  padding-left: 15px;
+  padding-right: 15px;
 }
 .menuFichas h4{
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   font-weight: 600;
   color: white;
+  font-size: 1.1rem;
+  margin-right: 3px;
    
+}
+.menuFichas #fichaSeleccionada{
+  margin-right: 14px;
+  width: 30px;
+  height: 30px;
+  cursor: none;
+  border-right: 2px solid white;
+  padding-right: 40px;
+}
+.menuFichas #fichaSeleccionada img{
+  width: 30px;
+  height: 30px;
 }
 .menuFichas div{
   background-position: center;
@@ -246,16 +261,6 @@ audio{
 .ficha:hover{
   transform: scale(1.35);
   transition: 0.1s;
-}
-#fichaSeleccionada{
-  margin-right: 14px;
-  width: 30px;
-  height: 30px;
-  background-image: url('../IMG/ficha10.png');
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  cursor: none;
 }
 .menuFichas #ficha1{ 
   background-image: url(../IMG/ficha10.png);
